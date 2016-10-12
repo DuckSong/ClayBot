@@ -1,7 +1,43 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ClayBot.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TimeoutClient" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Sensitivity" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="LolPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Riot Games\League of Legends</Value>
+    </Setting>
+    <Setting Name="LolId" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LolPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PROCESS_NAMES" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;lol.launcher.admin&lt;/string&gt;
+  &lt;string&gt;lol.launcher&lt;/string&gt;
+  &lt;string&gt;rads_user_kernel&lt;/string&gt;
+  &lt;string&gt;LoLLauncher&lt;/string&gt;
+  &lt;string&gt;LoLPatcher&lt;/string&gt;
+  &lt;string&gt;LolClient&lt;/string&gt;
+  &lt;string&gt;League of Legends&lt;/string&gt;
+  &lt;string&gt;BsSndRpt&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="IMAGES_PATH" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data\Images</Value>
+    </Setting>
+    <Setting Name="SMALL_PATCHER_WIDTH" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">992</Value>
+    </Setting>
+    <Setting Name="SMALL_PATCHER_HEIGHT" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">620</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

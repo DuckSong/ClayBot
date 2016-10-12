@@ -8,22 +8,124 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClayBot.Properties
-{
-
-
+namespace ClayBot.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal TimeoutClient {
+            get {
+                return ((decimal)(this["TimeoutClient"]));
+            }
+            set {
+                this["TimeoutClient"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal Sensitivity {
+            get {
+                return ((decimal)(this["Sensitivity"]));
+            }
+            set {
+                this["Sensitivity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Riot Games\\League of Legends")]
+        public string LolPath {
+            get {
+                return ((string)(this["LolPath"]));
+            }
+            set {
+                this["LolPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LolId {
+            get {
+                return ((string)(this["LolId"]));
+            }
+            set {
+                this["LolId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LolPassword {
+            get {
+                return ((string)(this["LolPassword"]));
+            }
+            set {
+                this["LolPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>lol.launcher.admin</string>
+  <string>lol.launcher</string>
+  <string>rads_user_kernel</string>
+  <string>LoLLauncher</string>
+  <string>LoLPatcher</string>
+  <string>LolClient</string>
+  <string>League of Legends</string>
+  <string>BsSndRpt</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection PROCESS_NAMES {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["PROCESS_NAMES"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data\\Images")]
+        public string IMAGES_PATH {
+            get {
+                return ((string)(this["IMAGES_PATH"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("992")]
+        public int SMALL_PATCHER_WIDTH {
+            get {
+                return ((int)(this["SMALL_PATCHER_WIDTH"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("620")]
+        public int SMALL_PATCHER_HEIGHT {
+            get {
+                return ((int)(this["SMALL_PATCHER_HEIGHT"]));
             }
         }
     }
