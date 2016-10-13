@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -30,7 +31,36 @@ namespace ClayBot.StateMachine
 
             transitions = new Dictionary<State, Transition>()
             {
-                { State.Unknown, currentTransition }
+                { State.Unknown, currentTransition },
+                { State.Initial, new Transition(
+                    State.Initial,
+                    5,
+                    () =>
+                    {
+                        int processCount = 0;
+
+                        foreach (string processName in Static.PROCESS_NAMES)
+                        {
+                            processCount += Process.GetProcessesByName(processName).Count();
+                        }
+
+                        return processCount == 0;
+                    },
+                    () =>
+                    {
+                        new Process()
+                        {
+                            StartInfo = new ProcessStartInfo()
+                            {
+                                FileName = mainForm.Config.LolLauncherPath
+                            }
+                        }.Start();
+                    },
+                    new State[]
+                    {
+                        State.Patcher,
+                        State.Patching
+                    }) }
             };
         }
 

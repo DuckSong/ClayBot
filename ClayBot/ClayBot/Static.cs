@@ -38,6 +38,14 @@ namespace ClayBot
         public static Size LARGE_PATCHER_SIZE = new Size(1280, 800);
         public static Size CLIENT_SIZE = new Size(1024, 640);
 
+        #region Patcher Click Points
+        #endregion
+
+        #region Patcher Drawing Rectangles
+        
+        #endregion
+
+        #region Client Click Points
         public static Point LOGIN_USERNAME_POINT = new Point(100, 255);
         public static Point LOGIN_PASSWORD_POINT = new Point(100, 310);
 
@@ -45,5 +53,9 @@ namespace ClayBot
         public static Point ARAM_POINT = new Point(370, 145);
         public static Point HOWLING_ABYSS_POINT = new Point(535, 125);
         public static Point NORMAL_POINT = new Point(700, 125);
+        #endregion
+
+        #region Client Drawing Rectangles
+        #endregion
     }
 }
