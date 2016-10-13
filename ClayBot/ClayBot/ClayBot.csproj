@@ -32,7 +32,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Emgu.CV.World">
+      <HintPath>lib\Emgu.CV.World.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,6 +79,9 @@
     <Compile Include="MainForm\Design.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MainForm\InputHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm\WorkerLogic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Client\ClientImages.en-AU.resx" />

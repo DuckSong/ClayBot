@@ -11,6 +11,28 @@ namespace ClayBot
         private Label statusLabel;
 
         private IContainer components;
+        
+        public MainForm() : base()
+        {
+            components = new Container();
+
+            Initialize();
+            InitializeConfig();
+            InitializeWorker();
+            InitializeInput();
+        }
+
+        public void SetStatus(string status, bool bad = false)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                instructionLabel.Text = Strings.Strings.Instruction;
+                statusLabel.Text = status;
+                statusLabel.ForeColor = bad ? Color.Red : Color.Green;
+
+                ResizeWindow();
+            });
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -29,15 +51,6 @@ namespace ClayBot
 
                 base.Dispose(disposing);
             }
-        }
-
-        public MainForm()
-        {
-            components = new Container();
-
-            Initialize();
-            InitializeConfig();
-            InitializeWorker();
         }
 
         private void CreateForm(Control.ControlCollection controlCollection, Point startPoint, int padding, bool isMainForm, params Control[] controls)
@@ -89,18 +102,6 @@ namespace ClayBot
                     instructionLabel.Width,
                     statusLabel.Width
                 }.Max() + 10, statusLabel.Bottom + 5);
-        }
-
-        public void SetStatus(string status, bool bad = false)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                instructionLabel.Text = Strings.Strings.Instruction;
-                statusLabel.Text = status;
-                statusLabel.ForeColor = bad ? Color.Red : Color.Green;
-
-                ResizeWindow();
-            });
         }
     }
 }

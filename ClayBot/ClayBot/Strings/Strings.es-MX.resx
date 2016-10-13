@@ -156,4 +156,7 @@
   <data name="PatcherText" xml:space="preserve">
     <value>LoL Patcher</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Estado: {0}, remarcado: {1}</value>
+  </data>
 </root>

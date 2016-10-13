@@ -8,12 +8,22 @@ namespace ClayBot
 {
     partial class MainForm : Form
     {
-        public Config Config;
-        
+        public Config Config
+        {
+            get { return config; }
+        }
+
+        private Config config;
+        private TextBox lolDirectoryTextBox;
+        private Button lolDirectoryButton;
+        private TextBox lolIdTextBox;
+        private TextBox lolPasswordTextBox;
+        private Button okButton;
+
         private void InitializeConfig()
         {
-            Config = Config.ReadConfig();
-            Config.Initialize();
+            config = Config.ReadConfig();
+            config.Initialize();
 
             while (!ValidateConfig())
             {
@@ -25,39 +35,39 @@ namespace ClayBot
         {
             bool result = true;
 
-            if (!Directory.Exists(Config.LolDirectory))
+            if (!Directory.Exists(config.LolDirectory))
             {
                 MessageBox.Show(Strings.Strings.LolDirectoryNotFound);
                 result = false;
             }
 
-            if (!File.Exists(Config.LolLauncherPath))
+            if (!File.Exists(config.LolLauncherPath))
             {
                 MessageBox.Show(Strings.Strings.LolLauncherNotFound);
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(Config.LolLocale))
+            if (string.IsNullOrEmpty(config.LolLocale))
             {
                 MessageBox.Show(Strings.Strings.LolLocaleNotFound);
                 result = false;
             }
             else
             {
-                if (!Static.SUPPORTED_LOCALES.Contains(Config.LolLocale))
+                if (!Static.SUPPORTED_LOCALES.Contains(config.LolLocale))
                 {
-                    MessageBox.Show(string.Format(Strings.Strings.LolLocaleNotSupported, Config.LolLocale));
+                    MessageBox.Show(string.Format(Strings.Strings.LolLocaleNotSupported, config.LolLocale));
                     Application.Exit();
                 }
             }
 
-            if (string.IsNullOrEmpty(Config.LolId))
+            if (string.IsNullOrEmpty(config.LolId))
             {
                 MessageBox.Show(Strings.Strings.LolIdNull);
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(Config.LolPassword))
+            if (string.IsNullOrEmpty(config.LolPassword))
             {
                 MessageBox.Show(Strings.Strings.LolPasswordNull);
                 result = false;
@@ -75,13 +85,7 @@ namespace ClayBot
                 lolDirectoryTextBox.Text = folderBrowserDialog.SelectedPath;
             }
         }
-
-        private TextBox lolDirectoryTextBox;
-        private Button lolDirectoryButton;
-        private TextBox lolIdTextBox;
-        private TextBox lolPasswordTextBox;
-        private Button okButton;
-
+        
         private void ShowConfigForm()
         {
             Form configForm = new Form();
@@ -107,7 +111,7 @@ namespace ClayBot
                 lolDirectoryTextBox = new TextBox()
                 {
                     Width = configForm.Width - 10,
-                    Text = Config.LolDirectory,
+                    Text = config.LolDirectory,
                     ReadOnly = true
                 },
                 lolDirectoryButton = new Button()
@@ -122,7 +126,7 @@ namespace ClayBot
                 lolIdTextBox = new TextBox()
                 {
                     Width = configForm.Width - 10,
-                    Text = Config.LolId
+                    Text = config.LolId
                 },
                 new Label()
                 {
@@ -132,7 +136,7 @@ namespace ClayBot
                 lolPasswordTextBox = new TextBox()
                 {
                     Width = configForm.Width - 10,
-                    Text = Config.LolPassword,
+                    Text = config.LolPassword,
                     UseSystemPasswordChar = true
                 },
                 okButton = new Button()
@@ -146,13 +150,13 @@ namespace ClayBot
 
             if (configForm.ShowDialog(this) == DialogResult.OK)
             {
-                Config.LolDirectory = lolDirectoryTextBox.Text;
-                Config.LolId = lolIdTextBox.Text;
-                Config.LolPassword = lolPasswordTextBox.Text;
+                config.LolDirectory = lolDirectoryTextBox.Text;
+                config.LolId = lolIdTextBox.Text;
+                config.LolPassword = lolPasswordTextBox.Text;
 
-                Config.Initialize();
+                config.Initialize();
 
-                Config.WriteConfig(Config);
+                Config.WriteConfig(config);
             }
 
             components.Remove(configForm);

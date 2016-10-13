@@ -4,7 +4,7 @@ namespace ClayBot
 {
     static class Static
     {
-        public const decimal TIMEOUT_CLIENT = 1m;
+        public const int TIMEOUT_CLIENT = 30000;
         public const decimal SENSITIVITY = 0.1m;
 
         public static string[] SUPPORTED_LOCALES = new string[]

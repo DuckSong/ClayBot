@@ -176,5 +176,14 @@ namespace ClayBot.Strings {
                 return ResourceManager.GetString("PatcherText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to State: {0}, Retry: {1}.
+        /// </summary>
+        internal static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
     }
 }
