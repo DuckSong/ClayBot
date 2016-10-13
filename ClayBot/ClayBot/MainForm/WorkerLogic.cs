@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using ClayBot.StateMachine;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ClayBot

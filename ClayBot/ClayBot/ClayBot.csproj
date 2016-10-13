@@ -85,9 +85,11 @@
     <Compile Include="MainForm\WorkerLogic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWorker.cs" />
+    <Compile Include="StateMachine\MainWorker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateMachine\State.cs" />
+    <Compile Include="StateMachine\Transition.cs" />
     <Compile Include="Static.cs" />
     <Compile Include="Strings\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
