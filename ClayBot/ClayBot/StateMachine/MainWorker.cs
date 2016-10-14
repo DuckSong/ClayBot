@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 
 namespace ClayBot.StateMachine
 {
-    class MainWorker
+    partial class MainWorker
     {
         private MainForm mainForm;
         private Dictionary<State, Transition> transitions;
@@ -59,7 +60,94 @@ namespace ClayBot.StateMachine
                     new State[]
                     {
                         State.Patcher,
-                        State.Patching
+                        State.Patching,
+                        State.PatcherAgreement
+                    }) },
+                { State.Patching, new Transition(
+                    State.Patching,
+                    5,
+                    () =>
+                    {
+                        PatcherSize patcherSize;
+                        if (!CheckPatcher(out patcherSize)) return false;
+
+                        ActivateTargetWindow(Static.PATCHER_SIZES[patcherSize]);
+
+                        return
+                            CheckImageOnTargetWindow(
+                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.PatcherIndicator : Images.Patcher.Large.PatcherImages.PatcherIndicator,
+                                Static.PATCHER_RECTANGLES[PatcherRectangle.PatcherIndicator][patcherSize]) &&
+                            CheckImageOnTargetWindow(
+                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Online : Images.Patcher.Large.PatcherImages.Online,
+                                Static.PATCHER_RECTANGLES[PatcherRectangle.Online][patcherSize]) &&
+                            !CheckImageOnTargetWindow(
+                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Launch : Images.Patcher.Large.PatcherImages.Launch,
+                                Static.PATCHER_RECTANGLES[PatcherRectangle.Launch][patcherSize]);
+                    },
+                    () =>
+                    {
+                    },
+                    new State[]
+                    {
+                        State.Patching,
+                        State.Patcher
+                    }) },
+                { State.Patcher, new Transition(
+                    State.Patcher,
+                    5,
+                    () =>
+                    {
+                        PatcherSize patcherSize;
+                        if (!CheckPatcher(out patcherSize)) return false;
+
+                        ActivateTargetWindow(Static.PATCHER_SIZES[patcherSize]);
+
+                        return
+                            CheckImageOnTargetWindow(
+                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.PatcherIndicator : Images.Patcher.Large.PatcherImages.PatcherIndicator,
+                                Static.PATCHER_RECTANGLES[PatcherRectangle.PatcherIndicator][patcherSize]) &&
+                            CheckImageOnTargetWindow(
+                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Online : Images.Patcher.Large.PatcherImages.Online,
+                                Static.PATCHER_RECTANGLES[PatcherRectangle.Online][patcherSize]) &&
+                            CheckImageOnTargetWindow(
+                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Launch : Images.Patcher.Large.PatcherImages.Launch,
+                                Static.PATCHER_RECTANGLES[PatcherRectangle.Launch][patcherSize]);
+                    },
+                    () =>
+                    {
+                        PatcherSize patcherSize;
+                        CheckPatcher(out patcherSize);
+                        ClickTargetWindowRectangle(Static.PATCHER_RECTANGLES[PatcherRectangle.Launch][patcherSize]);
+                    },
+                    new State[]
+                    {
+                        State.PatcherAgreement,
+                        //State.Login
+                    }) },
+                { State.PatcherAgreement, new Transition(
+                    State.PatcherAgreement,
+                    5,
+                    () =>
+                    {
+                        PatcherSize patcherSize;
+                        if (!CheckPatcher(out patcherSize)) return false;
+
+                        ActivateTargetWindow(Static.PATCHER_SIZES[patcherSize]);
+
+                        return CheckImageOnTargetWindow(
+                            patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Accept : Images.Patcher.Large.PatcherImages.Accept,
+                            Static.PATCHER_RECTANGLES[PatcherRectangle.Accept][patcherSize]);
+                    },
+                    () =>
+                    {
+                        PatcherSize patcherSize;
+                        CheckPatcher(out patcherSize);
+                        ClickTargetWindowRectangle(Static.PATCHER_RECTANGLES[PatcherRectangle.Accept][patcherSize]);
+                    },
+                    new State[]
+                    {
+                        State.PatcherAgreement,
+                        //State.Login
                     }) }
             };
         }

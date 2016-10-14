@@ -7,7 +7,7 @@
         Patcher,
         Patching,
         PatcherAgreement,
-        Login,
+        /*Login,
         InvalidLogin,
         LoggingIn,
         Reconnect,
@@ -20,6 +20,6 @@
         AcceptQueue,
         ChampionSelect,
         InGame,
-        Result
+        Result*/
     }
 }
