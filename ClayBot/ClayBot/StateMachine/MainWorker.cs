@@ -227,15 +227,20 @@ namespace ClayBot.StateMachine
                     },
                     () =>
                     {
-                        Click(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LoginUsername]);
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LoginUsername]);
                         EmptyTextBox();
                         SendText(mainForm.Config.LolId);
-                        Click(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LoginPassword]);
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LoginPassword]);
                         EmptyTextBox();
                         SendText(mainForm.Config.LolPassword);
+                        ClickTargetWindowRectangle(Static.CLIENT_RECTANGLES[ClientRectangle.Login]);
                     },
                     new State[]
                     {
+                        State.InvalidLogin,
+                        State.LoggingIn,
+                        State.Main,
+                        State.Reconnect
                     }) },
                 #endregion
             };
