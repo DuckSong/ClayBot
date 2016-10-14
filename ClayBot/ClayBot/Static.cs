@@ -17,6 +17,13 @@ namespace ClayBot
         Accept
     }
 
+    enum ClientRectangle
+    {
+        LoginIndicator,
+        LoginIndicator2,
+        LoginIndicatorThreshold
+    }
+
     static class Static
     {
         public const int ACTIVATE_WINDOW_DELAY = 1000;
@@ -95,6 +102,13 @@ namespace ClayBot
                     { PatcherSize.Large, new Rectangle(478, 608, 55, 20) }
                 }
             }
+        };
+
+        public static Dictionary<ClientRectangle, Rectangle> CLIENT_RECTANGLES = new Dictionary<ClientRectangle, Rectangle>()
+        {
+            { ClientRectangle.LoginIndicator, new Rectangle(106, 90, 202, 65) },
+            { ClientRectangle.LoginIndicator2, new Rectangle(24, 557, 41, 21) },
+            { ClientRectangle.LoginIndicatorThreshold, new Rectangle(72, 195, 84, 17) }
         };
     }
 }
