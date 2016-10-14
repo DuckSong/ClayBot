@@ -40,11 +40,11 @@ namespace ClayBot
                 0);
         }
 
-        private void Pause()
+        public void Pause()
         {
             Invoke((MethodInvoker)delegate
             {
-                mainWorker.Quit();
+                workerThread.Abort();
                 workerThread.Join();
 
                 ShowConfigForm();

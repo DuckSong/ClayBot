@@ -45,7 +45,7 @@ namespace ClayBot
 
                 if (workerThread != null && mainWorker != null)
                 {
-                    mainWorker.Quit();
+                    workerThread.Abort();
                     workerThread.Join();
                 }
 

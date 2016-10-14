@@ -14,6 +14,14 @@ namespace ClayBot.StateMachine
         public PatcherRectangle PatcherRectangle;
         public PatcherSize PatcherSize;
         public bool IsThreshold;
+
+        public PatcherValidation(bool expectedResult, PatcherRectangle patcherRectangle, PatcherSize patcherSize, bool isThreshold)
+        {
+            ExpectedResult = expectedResult;
+            PatcherRectangle = patcherRectangle;
+            PatcherSize = patcherSize;
+            IsThreshold = isThreshold;
+        }
     }
 
     struct ClientValidation
@@ -21,6 +29,13 @@ namespace ClayBot.StateMachine
         public bool ExpectedResult;
         public ClientRectangle ClientRectangle;
         public bool IsThreshold;
+
+        public ClientValidation(bool expectedResult, ClientRectangle clientRectangle, bool isThreshold)
+        {
+            ExpectedResult = expectedResult;
+            ClientRectangle = clientRectangle;
+            IsThreshold = isThreshold;
+        }
     }
 
     partial class MainWorker

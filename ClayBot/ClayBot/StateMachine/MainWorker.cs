@@ -11,12 +11,10 @@ namespace ClayBot.StateMachine
     {
         private MainForm mainForm;
         private Dictionary<State, Transition> transitions;
-        private bool mainLoop;
         private Transition currentTransition;
         
         public MainWorker(MainForm mainForm)
         {
-            mainLoop = true;
             this.mainForm = mainForm;
 
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(mainForm.Config.LolLocale);
@@ -79,27 +77,21 @@ namespace ClayBot.StateMachine
                         return
                             ValidatePatcher(new PatcherValidation[]
                             {
-                                new PatcherValidation()
-                                {
-                                    ExpectedResult = true,
-                                    PatcherRectangle = PatcherRectangle.PatcherIndicator,
-                                    PatcherSize = patcherSize,
-                                    IsThreshold = false
-                                },
-                                new PatcherValidation()
-                                {
-                                    ExpectedResult = true,
-                                    PatcherRectangle = PatcherRectangle.Online,
-                                    PatcherSize = patcherSize,
-                                    IsThreshold = false
-                                },
-                                new PatcherValidation()
-                                {
-                                    ExpectedResult = false,
-                                    PatcherRectangle = PatcherRectangle.Launch,
-                                    PatcherSize = patcherSize,
-                                    IsThreshold = false
-                                }
+                                new PatcherValidation(
+                                    true,
+                                    PatcherRectangle.PatcherIndicator,
+                                    patcherSize,
+                                    false),
+                                new PatcherValidation(
+                                    true,
+                                    PatcherRectangle.Online,
+                                    patcherSize,
+                                    false),
+                                new PatcherValidation(
+                                    false,
+                                    PatcherRectangle.Launch,
+                                    patcherSize,
+                                    false)
                             });
                     },
                     () =>
@@ -124,27 +116,21 @@ namespace ClayBot.StateMachine
 
                         return ValidatePatcher(new PatcherValidation[]
                         {
-                            new PatcherValidation()
-                            {
-                                ExpectedResult = true,
-                                PatcherRectangle = PatcherRectangle.PatcherIndicator,
-                                PatcherSize = patcherSize,
-                                IsThreshold = false
-                            },
-                            new PatcherValidation()
-                            {
-                                ExpectedResult = true,
-                                PatcherRectangle = PatcherRectangle.Online,
-                                PatcherSize = patcherSize,
-                                IsThreshold = false
-                            },
-                            new PatcherValidation()
-                            {
-                                ExpectedResult = true,
-                                PatcherRectangle = PatcherRectangle.Launch,
-                                PatcherSize = patcherSize,
-                                IsThreshold = false
-                            }
+                            new PatcherValidation(
+                                true,
+                                PatcherRectangle.PatcherIndicator,
+                                patcherSize,
+                                false),
+                            new PatcherValidation(
+                                true,
+                                PatcherRectangle.Online,
+                                patcherSize,
+                                false),
+                            new PatcherValidation(
+                                true,
+                                PatcherRectangle.Launch,
+                                patcherSize,
+                                false)
                         });
                     },
                     () =>
@@ -172,13 +158,11 @@ namespace ClayBot.StateMachine
 
                         return ValidatePatcher(new PatcherValidation[]
                         {
-                            new PatcherValidation()
-                            {
-                                ExpectedResult = true,
-                                PatcherRectangle = PatcherRectangle.Accept,
-                                PatcherSize = patcherSize,
-                                IsThreshold = false
-                            }
+                            new PatcherValidation(
+                                true,
+                                PatcherRectangle.Accept,
+                                patcherSize,
+                                false)
                         });
                     },
                     () =>
@@ -205,24 +189,22 @@ namespace ClayBot.StateMachine
 
                         return ValidateClient(new ClientValidation[]
                         {
-                            new ClientValidation()
-                            {
-                                ExpectedResult = true,
-                                ClientRectangle = ClientRectangle.LoginIndicator,
-                                IsThreshold = false
-                            },
-                            new ClientValidation()
-                            {
-                                ExpectedResult = true,
-                                ClientRectangle = ClientRectangle.LoginIndicator2,
-                                IsThreshold = false
-                            },
-                            new ClientValidation()
-                            {
-                                ExpectedResult = true,
-                                ClientRectangle = ClientRectangle.LoginIndicatorThreshold,
-                                IsThreshold = true
-                            }
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicator,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicator2,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicatorThreshold,
+                                true),
+                            new ClientValidation(
+                                false,
+                                ClientRectangle.InvalidLoginOk,
+                                false)
                         });
                     },
                     () =>
@@ -243,17 +225,52 @@ namespace ClayBot.StateMachine
                         State.Reconnect
                     }) },
                 #endregion
+
+                #region Invalid Login State
+                { State.InvalidLogin, new Transition(
+                    State.InvalidLogin,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicator,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicator2,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicatorThreshold,
+                                true),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.InvalidLoginOk,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTargetWindowRectangle(Static.CLIENT_RECTANGLES[ClientRectangle.InvalidLoginOk]);
+                        mainForm.Pause();
+                    },
+                    new State[]
+                    {
+                        State.Login
+                    }) },
+                #endregion
             };
         }
-
-        public void Quit()
-        {
-            mainLoop = false;
-        }
-
+        
         public void Work()
         {
-            while (mainLoop)
+            while (true)
             {
                 currentTransition = currentTransition.Work(mainForm, transitions);
             }
