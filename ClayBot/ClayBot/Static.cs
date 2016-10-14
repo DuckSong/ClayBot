@@ -21,7 +21,9 @@ namespace ClayBot
     {
         LoginIndicator,
         LoginIndicator2,
-        LoginIndicatorThreshold
+        LoginIndicatorThreshold,
+        InactiveLogin,
+        Login
     }
 
     enum ClientClickPoint
@@ -118,7 +120,9 @@ namespace ClayBot
         {
             { ClientRectangle.LoginIndicator, new Rectangle(106, 90, 202, 65) },
             { ClientRectangle.LoginIndicator2, new Rectangle(24, 557, 41, 21) },
-            { ClientRectangle.LoginIndicatorThreshold, new Rectangle(72, 195, 84, 17) }
+            { ClientRectangle.LoginIndicatorThreshold, new Rectangle(72, 195, 84, 17) },
+            { ClientRectangle.InactiveLogin, new Rectangle(276, 333, 33, 16) },
+            { ClientRectangle.Login, new Rectangle(276, 333, 33, 16) }
         };
 
         public static Dictionary<ClientClickPoint, Point> CLIENT_CLICK_POINTS = new Dictionary<ClientClickPoint, Point>()

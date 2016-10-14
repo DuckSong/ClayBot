@@ -8,6 +8,10 @@ namespace ClayBot.Images.Client
         {
             switch (clientRectangle)
             {
+                case ClientRectangle.InactiveLogin:
+                    return ClientImages.InactiveLogin;
+                case ClientRectangle.Login:
+                    return ClientImages.Login;
                 case ClientRectangle.LoginIndicator:
                     return ClientImages.LoginIndicator;
                 case ClientRectangle.LoginIndicator2:
