@@ -1,4 +1,6 @@
-﻿using Emgu.CV;
+﻿using ClayBot.Images.Client;
+using ClayBot.Images.Patcher;
+using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using System.Drawing;
@@ -6,6 +8,21 @@ using static ClayBot.NativeMethods;
 
 namespace ClayBot.StateMachine
 {
+    struct PatcherValidation
+    {
+        public bool ExpectedResult;
+        public PatcherRectangle PatcherRectangle;
+        public PatcherSize PatcherSize;
+        public bool IsThreshold;
+    }
+
+    struct ClientValidation
+    {
+        public bool ExpectedResult;
+        public ClientRectangle ClientRectangle;
+        public bool IsThreshold;
+    }
+
     partial class MainWorker
     {
         private Image<Bgr, byte> GetTargetWindowImage(Rectangle location)
@@ -60,6 +77,38 @@ namespace ClayBot.StateMachine
             {
                 return threshold ? CheckThresholdImage(sourceImage, targetImage) : CheckImage(sourceImage, targetImage);
             }
+        }
+
+        private bool ValidatePatcher(params PatcherValidation[] patcherValidations)
+        {
+            foreach (PatcherValidation patcherValidation in patcherValidations)
+            {
+                if (CheckImageOnTargetWindow(
+                    PatcherImagesAccessor.GetImage(patcherValidation.PatcherSize, patcherValidation.PatcherRectangle),
+                    Static.PATCHER_RECTANGLES[patcherValidation.PatcherRectangle][patcherValidation.PatcherSize],
+                    patcherValidation.IsThreshold) != patcherValidation.ExpectedResult)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ValidateClient(params ClientValidation[] clientValidations)
+        {
+            foreach (ClientValidation clientValidation in clientValidations)
+            {
+                if (CheckImageOnTargetWindow(
+                    ClientImagesAccessor.GetImage(clientValidation.ClientRectangle),
+                    Static.CLIENT_RECTANGLES[clientValidation.ClientRectangle],
+                    clientValidation.IsThreshold) != clientValidation.ExpectedResult)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

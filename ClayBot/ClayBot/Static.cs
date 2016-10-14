@@ -24,6 +24,16 @@ namespace ClayBot
         LoginIndicatorThreshold
     }
 
+    enum ClientClickPoint
+    {
+        LoginUsername,
+        LoginPassword,
+        SelectPvp,
+        SelectAram,
+        SelectHowlingAbyss,
+        SelectNormal
+    }
+
     static class Static
     {
         public const int ACTIVATE_WINDOW_DELAY = 1000;
@@ -109,6 +119,16 @@ namespace ClayBot
             { ClientRectangle.LoginIndicator, new Rectangle(106, 90, 202, 65) },
             { ClientRectangle.LoginIndicator2, new Rectangle(24, 557, 41, 21) },
             { ClientRectangle.LoginIndicatorThreshold, new Rectangle(72, 195, 84, 17) }
+        };
+
+        public static Dictionary<ClientClickPoint, Point> CLIENT_CLICK_POINTS = new Dictionary<ClientClickPoint, Point>()
+        {
+            { ClientClickPoint.LoginUsername, new Point(100, 255) },
+            { ClientClickPoint.LoginPassword, new Point(100, 310) },
+            { ClientClickPoint.SelectPvp, new Point(260, 100) },
+            { ClientClickPoint.SelectAram, new Point(370, 145) },
+            { ClientClickPoint.SelectHowlingAbyss, new Point(535, 125) },
+            { ClientClickPoint.SelectNormal, new Point(700, 125) }
         };
     }
 }

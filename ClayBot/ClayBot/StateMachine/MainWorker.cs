@@ -77,15 +77,30 @@ namespace ClayBot.StateMachine
                         ActivateTargetWindow(Static.PATCHER_SIZES[patcherSize]);
 
                         return
-                            CheckImageOnTargetWindow(
-                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.PatcherIndicator : Images.Patcher.Large.PatcherImages.PatcherIndicator,
-                                Static.PATCHER_RECTANGLES[PatcherRectangle.PatcherIndicator][patcherSize]) &&
-                            CheckImageOnTargetWindow(
-                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Online : Images.Patcher.Large.PatcherImages.Online,
-                                Static.PATCHER_RECTANGLES[PatcherRectangle.Online][patcherSize]) &&
-                            !CheckImageOnTargetWindow(
-                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Launch : Images.Patcher.Large.PatcherImages.Launch,
-                                Static.PATCHER_RECTANGLES[PatcherRectangle.Launch][patcherSize]);
+                            ValidatePatcher(new PatcherValidation[]
+                            {
+                                new PatcherValidation()
+                                {
+                                    ExpectedResult = true,
+                                    PatcherRectangle = PatcherRectangle.PatcherIndicator,
+                                    PatcherSize = patcherSize,
+                                    IsThreshold = false
+                                },
+                                new PatcherValidation()
+                                {
+                                    ExpectedResult = true,
+                                    PatcherRectangle = PatcherRectangle.Online,
+                                    PatcherSize = patcherSize,
+                                    IsThreshold = false
+                                },
+                                new PatcherValidation()
+                                {
+                                    ExpectedResult = false,
+                                    PatcherRectangle = PatcherRectangle.Launch,
+                                    PatcherSize = patcherSize,
+                                    IsThreshold = false
+                                }
+                            });
                     },
                     () =>
                     {
@@ -107,16 +122,30 @@ namespace ClayBot.StateMachine
 
                         ActivateTargetWindow(Static.PATCHER_SIZES[patcherSize]);
 
-                        return
-                            CheckImageOnTargetWindow(
-                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.PatcherIndicator : Images.Patcher.Large.PatcherImages.PatcherIndicator,
-                                Static.PATCHER_RECTANGLES[PatcherRectangle.PatcherIndicator][patcherSize]) &&
-                            CheckImageOnTargetWindow(
-                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Online : Images.Patcher.Large.PatcherImages.Online,
-                                Static.PATCHER_RECTANGLES[PatcherRectangle.Online][patcherSize]) &&
-                            CheckImageOnTargetWindow(
-                                patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Launch : Images.Patcher.Large.PatcherImages.Launch,
-                                Static.PATCHER_RECTANGLES[PatcherRectangle.Launch][patcherSize]);
+                        return ValidatePatcher(new PatcherValidation[]
+                        {
+                            new PatcherValidation()
+                            {
+                                ExpectedResult = true,
+                                PatcherRectangle = PatcherRectangle.PatcherIndicator,
+                                PatcherSize = patcherSize,
+                                IsThreshold = false
+                            },
+                            new PatcherValidation()
+                            {
+                                ExpectedResult = true,
+                                PatcherRectangle = PatcherRectangle.Online,
+                                PatcherSize = patcherSize,
+                                IsThreshold = false
+                            },
+                            new PatcherValidation()
+                            {
+                                ExpectedResult = true,
+                                PatcherRectangle = PatcherRectangle.Launch,
+                                PatcherSize = patcherSize,
+                                IsThreshold = false
+                            }
+                        });
                     },
                     () =>
                     {
@@ -141,9 +170,16 @@ namespace ClayBot.StateMachine
 
                         ActivateTargetWindow(Static.PATCHER_SIZES[patcherSize]);
 
-                        return CheckImageOnTargetWindow(
-                            patcherSize == PatcherSize.Small ? Images.Patcher.Small.PatcherImages.Accept : Images.Patcher.Large.PatcherImages.Accept,
-                            Static.PATCHER_RECTANGLES[PatcherRectangle.Accept][patcherSize]);
+                        return ValidatePatcher(new PatcherValidation[]
+                        {
+                            new PatcherValidation()
+                            {
+                                ExpectedResult = true,
+                                PatcherRectangle = PatcherRectangle.Accept,
+                                PatcherSize = patcherSize,
+                                IsThreshold = false
+                            }
+                        });
                     },
                     () =>
                     {
@@ -163,10 +199,40 @@ namespace ClayBot.StateMachine
                     State.Login,
                     () =>
                     {
-                        return true;
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation()
+                            {
+                                ExpectedResult = true,
+                                ClientRectangle = ClientRectangle.LoginIndicator,
+                                IsThreshold = false
+                            },
+                            new ClientValidation()
+                            {
+                                ExpectedResult = true,
+                                ClientRectangle = ClientRectangle.LoginIndicator2,
+                                IsThreshold = false
+                            },
+                            new ClientValidation()
+                            {
+                                ExpectedResult = true,
+                                ClientRectangle = ClientRectangle.LoginIndicatorThreshold,
+                                IsThreshold = true
+                            }
+                        });
                     },
                     () =>
                     {
+                        Click(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LoginUsername]);
+                        EmptyTextBox();
+                        SendText(mainForm.Config.LolId);
+                        Click(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LoginPassword]);
+                        EmptyTextBox();
+                        SendText(mainForm.Config.LolPassword);
                     },
                     new State[]
                     {

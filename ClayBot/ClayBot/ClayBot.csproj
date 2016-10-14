@@ -58,21 +58,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientImages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Images\Client\ClientImagesAccessor.cs" />
     <Compile Include="Images\Game\GameImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GameImages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Images\Patcher\Large\LargePatcherImagesAccessor.cs" />
     <Compile Include="Images\Patcher\Large\PatcherImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PatcherImages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Images\Patcher\PatcherImagesAccessor.cs" />
     <Compile Include="Images\Patcher\Small\PatcherImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PatcherImages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Images\Patcher\Small\SmallPatcherImagesAccessor.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

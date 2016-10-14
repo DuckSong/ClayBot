@@ -104,6 +104,11 @@ namespace ClayBot.StateMachine
             Thread.Sleep(Static.CURSOR_CLICK_DELAY);
         }
 
+        private void Click(Point p)
+        {
+            Click(p.X, p.Y);
+        }
+
         private void ClickTargetWindowRectangle(Rectangle target)
         {
             Click(
