@@ -15,12 +15,10 @@ namespace ClayBot.StateMachine
         private State[] expectedStates;
         private Func<bool> check;
         private Action doWork;
-        private int retry;
 
-        public Transition(State currentState, int retry, Func<bool> check, Action doWork, params State[] expectedStates)
+        public Transition(State currentState, Func<bool> check, Action doWork, params State[] expectedStates)
         {
             this.currentState = currentState;
-            this.retry = retry;
             this.check = check;
             this.doWork = doWork;
             this.expectedStates = expectedStates;
@@ -32,7 +30,7 @@ namespace ClayBot.StateMachine
 
             int numRetry = 0;
 
-            while (numRetry < retry)
+            while (numRetry < Static.RETRY)
             {
                 mainForm.SetStatus(string.Format(Strings.Strings.Status, currentState, numRetry), currentState == State.Unknown);
 
@@ -48,6 +46,8 @@ namespace ClayBot.StateMachine
                         if (transitions[expectedState].Check()) return transitions[expectedState];
                     }
                 }
+
+                if (!check()) return transitions[State.Unknown];
 
                 numRetry++;
             }

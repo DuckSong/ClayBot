@@ -2,6 +2,7 @@
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using System.Drawing;
+using static ClayBot.NativeMethods;
 
 namespace ClayBot.StateMachine
 {

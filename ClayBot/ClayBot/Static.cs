@@ -22,7 +22,8 @@ namespace ClayBot
         public const int ACTIVATE_WINDOW_DELAY = 1000;
         public const int CURSOR_CLICK_DELAY = 500;
         public const int KEY_ENTER_DELAY = 500;
-        public const int TIMEOUT_CLIENT = 30000;
+        public const int TIMEOUT_CLIENT = 10000;
+        public const int RETRY = 5;
         public const double SENSITIVITY = 0.1d;
         public const double THRESHOLD_GRAY = 200d;
 

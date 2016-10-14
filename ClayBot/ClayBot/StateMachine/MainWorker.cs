@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -25,17 +24,19 @@ namespace ClayBot.StateMachine
 
             currentTransition = new Transition(
                 State.Unknown,
-                5,
                 () => { return true; },
                 () => { },
                 (Enum.GetValues(typeof(State)) as State[]).Where(x => x != State.Unknown).ToArray());
 
             transitions = new Dictionary<State, Transition>()
             {
+                #region Unknown State
                 { State.Unknown, currentTransition },
+                #endregion
+                
+                #region Initial State
                 { State.Initial, new Transition(
                     State.Initial,
-                    5,
                     () =>
                     {
                         int processCount = 0;
@@ -63,9 +64,11 @@ namespace ClayBot.StateMachine
                         State.Patching,
                         State.PatcherAgreement
                     }) },
+                #endregion
+
+                #region Patching State
                 { State.Patching, new Transition(
                     State.Patching,
-                    5,
                     () =>
                     {
                         PatcherSize patcherSize;
@@ -92,9 +95,11 @@ namespace ClayBot.StateMachine
                         State.Patching,
                         State.Patcher
                     }) },
+                #endregion
+
+                #region Patcher State
                 { State.Patcher, new Transition(
                     State.Patcher,
-                    5,
                     () =>
                     {
                         PatcherSize patcherSize;
@@ -122,11 +127,13 @@ namespace ClayBot.StateMachine
                     new State[]
                     {
                         State.PatcherAgreement,
-                        //State.Login
+                        State.Login
                     }) },
+                #endregion
+
+                #region Patcher Agreement State
                 { State.PatcherAgreement, new Transition(
                     State.PatcherAgreement,
-                    5,
                     () =>
                     {
                         PatcherSize patcherSize;
@@ -147,8 +154,24 @@ namespace ClayBot.StateMachine
                     new State[]
                     {
                         State.PatcherAgreement,
-                        //State.Login
-                    }) }
+                        State.Login
+                    }) },
+                #endregion
+
+                #region Login State
+                { State.Login, new Transition(
+                    State.Login,
+                    () =>
+                    {
+                        return true;
+                    },
+                    () =>
+                    {
+                    },
+                    new State[]
+                    {
+                    }) },
+                #endregion
             };
         }
 

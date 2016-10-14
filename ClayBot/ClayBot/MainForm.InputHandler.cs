@@ -2,14 +2,12 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static ClayBot.NativeMethods;
 
 namespace ClayBot
 {
     partial class MainForm : Form
     {
-        private const int WH_KEYBOARD_LL = 13;
-        private const int WM_KEYDOWN = 0x0100;
-
         private IntPtr hhk;
         private LowLevelKeyboardProc callbackDelegate;
 
@@ -54,22 +52,5 @@ namespace ClayBot
                 InitializeWorker();
             });
         }
-
-        #region P/Invoke
-        [DllImport("user32.dll")]
-        static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
-        static extern IntPtr GetModuleHandle(string lpModuleName);
-
-        delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr SetWindowsHookEx(int hookType, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool UnhookWindowsHookEx(IntPtr hhk);
-        #endregion
     }
 }

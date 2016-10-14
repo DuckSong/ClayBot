@@ -1,112 +1,14 @@
 ﻿using System;
 using System.Drawing;
-using System.Globalization;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static ClayBot.NativeMethods;
 
 namespace ClayBot.StateMachine
 {
     partial class MainWorker
     {
-        [StructLayout(LayoutKind.Sequential)]
-        struct RECT
-        {
-            public int Left, Top, Right, Bottom;
-
-            public RECT(int left, int top, int right, int bottom)
-            {
-                Left = left;
-                Top = top;
-                Right = right;
-                Bottom = bottom;
-            }
-
-            public RECT(Rectangle r) : this(r.Left, r.Top, r.Right, r.Bottom) { }
-
-            public int X
-            {
-                get { return Left; }
-                set { Right -= (Left - value); Left = value; }
-            }
-
-            public int Y
-            {
-                get { return Top; }
-                set { Bottom -= (Top - value); Top = value; }
-            }
-
-            public int Height
-            {
-                get { return Bottom - Top; }
-                set { Bottom = value + Top; }
-            }
-
-            public int Width
-            {
-                get { return Right - Left; }
-                set { Right = value + Left; }
-            }
-
-            public Point Location
-            {
-                get { return new Point(Left, Top); }
-                set { X = value.X; Y = value.Y; }
-            }
-
-            public Size Size
-            {
-                get { return new Size(Width, Height); }
-                set { Width = value.Width; Height = value.Height; }
-            }
-
-            public static implicit operator Rectangle(RECT r)
-            {
-                return new Rectangle(r.Left, r.Top, r.Width, r.Height);
-            }
-
-            public static implicit operator RECT(Rectangle r)
-            {
-                return new RECT(r);
-            }
-
-            public static bool operator ==(RECT r1, RECT r2)
-            {
-                return r1.Equals(r2);
-            }
-
-            public static bool operator !=(RECT r1, RECT r2)
-            {
-                return !r1.Equals(r2);
-            }
-
-            public bool Equals(RECT r)
-            {
-                return r.Left == Left && r.Top == Top && r.Right == Right && r.Bottom == Bottom;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj is RECT)
-                    return Equals((RECT)obj);
-                else if (obj is Rectangle)
-                    return Equals(new RECT((Rectangle)obj));
-                else
-                    return false;
-            }
-
-            public override int GetHashCode()
-            {
-                return ((Rectangle)this).GetHashCode();
-            }
-
-            public override string ToString()
-            {
-                return string.Format(CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", Left, Top, Right, Bottom);
-            }
-        }
-
         struct Window
         {
             public IntPtr Handle;
@@ -115,12 +17,7 @@ namespace ClayBot.StateMachine
             public RECT Rect;
             public bool Found;
         }
-
-        const uint SHOW_WINDOW_RESTORE = 9;
-        const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
-        const uint MOUSEEVENTF_LEFTUP = 0x0004;
-        const int KEYEVENTF_KEYUP = 0x02;
-
+        
         private Window targetWindow;
         private EnumWindowsProc enumWindowsDelegate;
         
@@ -272,52 +169,5 @@ namespace ClayBot.StateMachine
 
             return true;
         }
-        
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool EnumChildWindows(IntPtr hWndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
-
-        delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
-
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool IsIconic(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        static extern void keybd_event(byte bvk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
-
-        [DllImport("user32.dll")]
-        static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool SetCursorPos(int x, int y);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool ShowWindow(IntPtr hWnd, uint nCmdShow);
     }
 }
