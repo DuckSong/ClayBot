@@ -52,6 +52,18 @@ namespace ClayBot.StateMachine
                 numRetry++;
             }
 
+            if (currentState == State.Unknown)
+            {
+                foreach (string processName in Static.PROCESS_NAMES)
+                {
+                    foreach (Process p in Process.GetProcessesByName(processName))
+                    {
+                        p.Kill();
+                        p.WaitForExit();
+                    }
+                }
+            }
+
             return transitions[State.Unknown];
         }
     }
