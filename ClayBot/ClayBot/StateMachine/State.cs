@@ -12,6 +12,7 @@
         LoggingIn,
         Reconnect,
         Main,
+        LeaverBusterWarning,
         SelectGameMode,
         SelectedAram,
         JoinQueueFailed,

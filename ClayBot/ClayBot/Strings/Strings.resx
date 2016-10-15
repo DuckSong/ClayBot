@@ -126,6 +126,9 @@
   <data name="Instruction" xml:space="preserve">
     <value>ESC: Quit, F12: Pause and show configuration menu</value>
   </data>
+  <data name="LeaverBusterAgreement" xml:space="preserve">
+    <value>I Agree</value>
+  </data>
   <data name="LolDirectoryLabel" xml:space="preserve">
     <value>League of Legends directory</value>
   </data>

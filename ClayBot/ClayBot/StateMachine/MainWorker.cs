@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClayBot.Images.Game;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -204,7 +205,11 @@ namespace ClayBot.StateMachine
                             new ClientValidation(
                                 false,
                                 ClientRectangle.InvalidLoginOk,
-                                false)
+                                false),
+                            new ClientValidation(
+                                false,
+                                ClientRectangle.LoggingInIndicatorThreshold,
+                                true)
                         });
                     },
                     () =>
@@ -252,7 +257,11 @@ namespace ClayBot.StateMachine
                             new ClientValidation(
                                 true,
                                 ClientRectangle.InvalidLoginOk,
-                                false)
+                                false),
+                            new ClientValidation(
+                                false,
+                                ClientRectangle.LoggingInIndicatorThreshold,
+                                true)
                         });
                     },
                     () =>
@@ -264,6 +273,388 @@ namespace ClayBot.StateMachine
                     {
                         State.Login
                     }) },
+                #endregion
+
+                #region Logging In State
+                { State.LoggingIn, new Transition(
+                    State.LoggingIn,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicator,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicator2,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoginIndicatorThreshold,
+                                true),
+                            new ClientValidation(
+                                false,
+                                ClientRectangle.InvalidLoginOk,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LoggingInIndicatorThreshold,
+                                true)
+                        });
+                    },
+                    () =>
+                    {
+                    },
+                    new State[]
+                    {
+                        State.InvalidLogin,
+                        State.Main,
+                        State.Reconnect
+                    }) },
+                #endregion
+
+                #region Reconnect State
+                { State.Reconnect, new Transition(
+                    State.Reconnect,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.Reconnect,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTargetWindowRectangle(Static.CLIENT_RECTANGLES[ClientRectangle.Reconnect]);
+                    },
+                    new State[]
+                    {
+                        State.InGame
+                    }) },
+                #endregion
+
+                #region Main State
+                { State.Main, new Transition(
+                    State.Main,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.Play,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTargetWindowRectangle(Static.CLIENT_RECTANGLES[ClientRectangle.Play]);
+                    },
+                    new State[]
+                    {
+                        State.SelectGameMode,
+                        State.SelectedAram,
+                        State.LeaverBusterWarning
+                    }) },
+                #endregion
+
+                #region Leaver Buster Warning State
+                { State.LeaverBusterWarning, new Transition(
+                    State.LeaverBusterWarning,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LeaverBusterWarning,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LeaverBusterWarning]);
+                        EmptyTextBox();
+                        SendText(Strings.Strings.LeaverBusterAgreement);
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.LeaverBusterOk]);
+                    },
+                    new State[]
+                    {
+                        State.SelectGameMode,
+                        State.SelectedAram
+                    }) },
+                #endregion
+
+                #region Select Game Mode State
+                { State.SelectGameMode, new Transition(
+                    State.SelectGameMode,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.InactivePlay,
+                                false),
+                            new ClientValidation(
+                                false,
+                                ClientRectangle.AramIndicator,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.SelectPvp]);
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.SelectAram]);
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.SelectHowlingAbyss]);
+                        ClickTarget(Static.CLIENT_CLICK_POINTS[ClientClickPoint.SelectNormal]);
+                    },
+                    new State[]
+                    {
+                        State.SelectedAram,
+                        State.LeaverBusterWarning
+                    }) },
+                #endregion
+
+                #region Selected Aram State
+                { State.SelectedAram, new Transition(
+                    State.SelectedAram,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.InactivePlay,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.AramIndicator,
+                                false),
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.Solo,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTargetWindowRectangle(Static.CLIENT_RECTANGLES[ClientRectangle.Solo]);
+                    },
+                    new State[]
+                    {
+                        State.InQueue,
+                        State.JoinQueueFailed,
+                        State.LeaverBuster,
+                        State.LeaverBusterWarning
+                    }) },
+                #endregion
+
+                #region Join Queue Failed State
+                { State.JoinQueueFailed, new Transition(
+                    State.JoinQueueFailed,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.JoinQueueFailedIndicator,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                    },
+                    new State[]
+                    {
+                        State.JoinQueueFailed,
+                        State.InQueue,
+                        State.Main
+                    }) },
+                #endregion
+
+                #region Leaver Buster State
+                { State.LeaverBuster, new Transition(
+                    State.LeaverBuster,
+                    () =>
+                    {
+                        return false;
+                    },
+                    () =>
+                    {
+                    },
+                    new State[]
+                    {
+                        State.LeaverBuster,
+                        State.InQueue,
+                        State.Main
+                    }) },
+                #endregion
+
+                #region In Queue State
+                { State.InQueue, new Transition(
+                    State.InQueue,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.InQueueIndicator,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                    },
+                    new State[]
+                    {
+                        State.InQueue,
+                        State.AcceptQueue
+                    }) },
+                #endregion
+
+                #region Accept Queue State
+                { State.AcceptQueue, new Transition(
+                    State.AcceptQueue,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.Accept,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTargetWindowRectangle(Static.CLIENT_RECTANGLES[ClientRectangle.Accept]);
+                    },
+                    new State[]
+                    {
+                        State.InQueue,
+                        State.ChampionSelect
+                    }) },
+                #endregion
+
+                #region Champion Select Queue
+                { State.ChampionSelect, new Transition(
+                    State.ChampionSelect,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.TeamChat,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                    },
+                    new State[]
+                    {
+                        State.ChampionSelect,
+                        State.InGame,
+                        State.InQueue
+                    }) },
+                #endregion
+
+                #region In Game Queue
+                { State.InGame, new Transition(
+                    State.InGame,
+                    () =>
+                    {
+                        if (!FindWindow(Static.GAME_CLASS_NAME, Strings.Strings.GameText)) return false;
+
+                        ActivateTargetWindow();
+
+                        return true;
+                    },
+                    () =>
+                    {
+                        ClickImageOnTargetWindow(GameImages.Continue);
+                    },
+                    new State[]
+                    {
+                        State.InGame,
+                        State.Result
+                    }) },
+                #endregion
+
+                #region Result State
+                { State.Result, new Transition(
+                    State.Result,
+                    () =>
+                    {
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.Home,
+                                false)
+                        });
+                    },
+                    () =>
+                    {
+                        ClickTargetWindowRectangle(Static.CLIENT_RECTANGLES[ClientRectangle.Home]);
+                    },
+                    new State[]
+                    {
+                        State.Main
+                    }) }
                 #endregion
             };
         }

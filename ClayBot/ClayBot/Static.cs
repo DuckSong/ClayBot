@@ -23,13 +23,27 @@ namespace ClayBot
         LoginIndicator2,
         LoginIndicatorThreshold,
         Login,
-        InvalidLoginOk
+        InvalidLoginOk,
+        LoggingInIndicatorThreshold,
+        Play,
+        Reconnect,
+        LeaverBusterWarning,
+        InactivePlay,
+        AramIndicator,
+        Solo,
+        JoinQueueFailedIndicator,
+        InQueueIndicator,
+        Accept,
+        TeamChat,
+        Home
     }
 
     enum ClientClickPoint
     {
         LoginUsername,
         LoginPassword,
+        LeaverBusterWarning,
+        LeaverBusterOk,
         SelectPvp,
         SelectAram,
         SelectHowlingAbyss,
@@ -40,7 +54,7 @@ namespace ClayBot
     {
         public const int ACTIVATE_WINDOW_DELAY = 1000;
         public const int CURSOR_CLICK_DELAY = 500;
-        public const int KEY_ENTER_DELAY = 500;
+        public const int KEY_ENTER_DELAY = 250;
         public const int TIMEOUT_CLIENT = 10000;
         public const int RETRY = 5;
         public const double SENSITIVITY = 0.1d;
@@ -122,13 +136,27 @@ namespace ClayBot
             { ClientRectangle.LoginIndicator2, new Rectangle(24, 557, 41, 21) },
             { ClientRectangle.LoginIndicatorThreshold, new Rectangle(72, 195, 84, 17) },
             { ClientRectangle.Login, new Rectangle(276, 333, 33, 16) },
-            { ClientRectangle.InvalidLoginOk, new Rectangle(554, 420, 23, 12) }
+            { ClientRectangle.InvalidLoginOk, new Rectangle(554, 420, 23, 12) },
+            { ClientRectangle.LoggingInIndicatorThreshold, new Rectangle(377, 237, 75, 15) },
+            { ClientRectangle.Reconnect, new Rectangle(481, 357, 62, 13) },
+            { ClientRectangle.Play, new Rectangle(449, 13, 118, 35) },
+            { ClientRectangle.LeaverBusterWarning, new Rectangle(321, 193, 164, 21) },
+            { ClientRectangle.InactivePlay, new Rectangle(450, 14, 116, 40) },
+            { ClientRectangle.AramIndicator, new Rectangle(200, 266, 292, 136) },
+            { ClientRectangle.Solo, new Rectangle(575, 560, 47, 17) },
+            { ClientRectangle.JoinQueueFailedIndicator, new Rectangle(222, 203, 198, 19) },
+            { ClientRectangle.InQueueIndicator, new Rectangle(450, 6, 114, 12) },
+            { ClientRectangle.Accept, new Rectangle(396, 357, 45, 17) },
+            { ClientRectangle.TeamChat, new Rectangle(227, 449, 63, 17) },
+            { ClientRectangle.Home, new Rectangle(708, 563, 38, 19) }
         };
 
         public static Dictionary<ClientClickPoint, Point> CLIENT_CLICK_POINTS = new Dictionary<ClientClickPoint, Point>()
         {
             { ClientClickPoint.LoginUsername, new Point(100, 255) },
             { ClientClickPoint.LoginPassword, new Point(100, 310) },
+            { ClientClickPoint.LeaverBusterWarning, new Point(347, 400) },
+            { ClientClickPoint.LeaverBusterOk, new Point(511, 428) },
             { ClientClickPoint.SelectPvp, new Point(260, 100) },
             { ClientClickPoint.SelectAram, new Point(370, 145) },
             { ClientClickPoint.SelectHowlingAbyss, new Point(535, 125) },

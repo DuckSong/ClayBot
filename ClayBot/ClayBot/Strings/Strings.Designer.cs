@@ -88,6 +88,15 @@ namespace ClayBot.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I Agree.
+        /// </summary>
+        internal static string LeaverBusterAgreement {
+            get {
+                return ResourceManager.GetString("LeaverBusterAgreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to League of Legends directory.
         /// </summary>
         internal static string LolDirectoryLabel {

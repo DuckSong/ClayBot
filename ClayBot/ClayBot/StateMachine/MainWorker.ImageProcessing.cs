@@ -57,7 +57,7 @@ namespace ClayBot.StateMachine
             }
         }
         
-        private bool CheckImage(Image<Bgr, byte> sourceImage, Image<Bgr, byte> targetImage)
+        private bool CheckImage(Image<Bgr, byte> sourceImage, Image<Bgr, byte> targetImage, out Point location)
         {
             using (Image<Gray, float> result = sourceImage.MatchTemplate(targetImage, TemplateMatchingType.SqdiffNormed))
             {
@@ -66,6 +66,7 @@ namespace ClayBot.StateMachine
 
                 result.MinMax(out minValues, out maxValues, out minLocations, out maxLocations);
 
+                location = minLocations[0];
                 return minValues[0] < Static.SENSITIVITY;
             }
         }
@@ -90,8 +91,26 @@ namespace ClayBot.StateMachine
             using (Image<Bgr, byte> sourceImage = GetTargetWindowImage(location))
             using (Image<Bgr, byte> targetImage = new Image<Bgr, byte>(image))
             {
-                return threshold ? CheckThresholdImage(sourceImage, targetImage) : CheckImage(sourceImage, targetImage);
+                Point imageLocation = new Point();
+                return threshold ? CheckThresholdImage(sourceImage, targetImage) : CheckImage(sourceImage, targetImage, out imageLocation);
             }
+        }
+
+        private void ClickImageOnTargetWindow(Bitmap image)
+        {
+            try
+            {
+                using (Image<Bgr, byte> sourceImage = GetTargetWindowImage(new Rectangle(new Point(0, 0), targetWindow.Rect.Size)))
+                using (Image<Bgr, byte> targetImage = new Image<Bgr, byte>(image))
+                {
+                    Point imageLocation = new Point();
+
+                    if (CheckImage(sourceImage, targetImage, out imageLocation))
+                    {
+                        ClickTarget(imageLocation);
+                    }
+                }
+            } catch { }
         }
 
         private bool ValidatePatcher(params PatcherValidation[] patcherValidations)
