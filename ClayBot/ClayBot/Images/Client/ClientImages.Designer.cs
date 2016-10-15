@@ -133,6 +133,16 @@ namespace ClayBot.Images.Client {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LeaverBusterIndicator {
+            get {
+                object obj = ResourceManager.GetObject("LeaverBusterIndicator", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LeaverBusterWarning {
             get {
                 object obj = ResourceManager.GetObject("LeaverBusterWarning", resourceCulture);

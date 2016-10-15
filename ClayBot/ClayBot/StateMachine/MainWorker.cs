@@ -227,7 +227,8 @@ namespace ClayBot.StateMachine
                         State.InvalidLogin,
                         State.LoggingIn,
                         State.Main,
-                        State.Reconnect
+                        State.Reconnect,
+                        State.LeaverBusterWarning
                     }) },
                 #endregion
 
@@ -315,7 +316,8 @@ namespace ClayBot.StateMachine
                     {
                         State.InvalidLogin,
                         State.Main,
-                        State.Reconnect
+                        State.Reconnect,
+                        State.LeaverBusterWarning
                     }) },
                 #endregion
 
@@ -512,7 +514,17 @@ namespace ClayBot.StateMachine
                     State.LeaverBuster,
                     () =>
                     {
-                        return false;
+                        if (!FindWindow(Static.CLIENT_CLASS_NAME, Strings.Strings.ClientText)) return false;
+
+                        ActivateTargetWindow(Static.CLIENT_SIZE);
+
+                        return ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.LeaverBusterIndicator,
+                                false)
+                        });
                     },
                     () =>
                     {

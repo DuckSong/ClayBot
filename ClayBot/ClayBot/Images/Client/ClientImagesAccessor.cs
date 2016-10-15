@@ -22,6 +22,8 @@ namespace ClayBot.Images.Client
                     return ClientImages.InvalidLoginOk;
                 case ClientRectangle.JoinQueueFailedIndicator:
                     return ClientImages.JoinQueueFailedIndicator;
+                case ClientRectangle.LeaverBusterIndicator:
+                    return ClientImages.LeaverBusterIndicator;
                 case ClientRectangle.LeaverBusterWarning:
                     return ClientImages.LeaverBusterWarning;
                 case ClientRectangle.LoggingInIndicatorThreshold:
