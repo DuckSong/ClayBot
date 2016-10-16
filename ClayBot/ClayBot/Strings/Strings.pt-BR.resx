@@ -126,6 +126,9 @@
   <data name="Instruction" xml:space="preserve">
     <value>ESC: Sair, F12: Pausa e menu de configuração mostrar</value>
   </data>
+  <data name="LeaverBusterAgreement" xml:space="preserve">
+    <value>Eu concordo</value>
+  </data>
   <data name="LolDirectoryLabel" xml:space="preserve">
     <value>League of Legends diretório</value>
   </data>
