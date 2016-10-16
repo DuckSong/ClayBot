@@ -65,7 +65,7 @@ namespace ClayBot.StateMachine
                 Point[] minLocations, maxLocations;
 
                 result.MinMax(out minValues, out maxValues, out minLocations, out maxLocations);
-
+                
                 location = minLocations[0];
                 return minValues[0] < Static.SENSITIVITY;
             }

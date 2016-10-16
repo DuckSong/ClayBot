@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 
 namespace ClayBot.StateMachine
 {
@@ -26,6 +28,9 @@ namespace ClayBot.StateMachine
 
         public Transition Work(MainForm mainForm, Dictionary<State, Transition> transitions)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(mainForm.Config.LolLocale);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(mainForm.Config.LolLocale);
+
             if (!check()) return transitions[State.Unknown];
 
             int numRetry = 0;
