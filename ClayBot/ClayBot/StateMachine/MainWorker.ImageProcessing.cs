@@ -118,7 +118,7 @@ namespace ClayBot.StateMachine
             foreach (PatcherValidation patcherValidation in patcherValidations)
             {
                 if (CheckImageOnTargetWindow(
-                    PatcherImagesAccessor.GetImage(patcherValidation.PatcherSize, patcherValidation.PatcherRectangle),
+                    PatcherImagesAccessor.GetImage(mainForm.Config.LolLocale, patcherValidation.PatcherSize, patcherValidation.PatcherRectangle),
                     Static.PATCHER_RECTANGLES[patcherValidation.PatcherRectangle][patcherValidation.PatcherSize],
                     patcherValidation.IsThreshold) != patcherValidation.ExpectedResult)
                 {
@@ -134,7 +134,7 @@ namespace ClayBot.StateMachine
             foreach (ClientValidation clientValidation in clientValidations)
             {
                 if (CheckImageOnTargetWindow(
-                    ClientImagesAccessor.GetImage(clientValidation.ClientRectangle),
+                    ClientImagesAccessor.GetImage(mainForm.Config.LolLocale, clientValidation.ClientRectangle),
                     Static.CLIENT_RECTANGLES[clientValidation.ClientRectangle],
                     clientValidation.IsThreshold) != clientValidation.ExpectedResult)
                 {

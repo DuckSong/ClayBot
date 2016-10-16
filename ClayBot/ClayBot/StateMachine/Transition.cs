@@ -32,7 +32,7 @@ namespace ClayBot.StateMachine
 
             while (numRetry < Static.RETRY)
             {
-                mainForm.SetStatus(string.Format(Strings.Strings.Status, currentState, numRetry), currentState == State.Unknown);
+                mainForm.SetStatus(string.Format(Strings.Strings.Status, currentState, numRetry, mainForm.Config.LolLocale), currentState == State.Unknown);
 
                 doWork();
 

@@ -160,6 +160,6 @@
     <value>LoL Patcher</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>State: {0}, Retry: {1}</value>
+    <value>State: {0}, Retry: {1} ({2})</value>
   </data>
 </root>

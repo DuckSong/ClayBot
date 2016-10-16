@@ -1,11 +1,16 @@
 ﻿using System.Drawing;
+using System.Globalization;
+using System.Threading;
 
 namespace ClayBot.Images.Client
 {
     static class ClientImagesAccessor
     {
-        public static Bitmap GetImage(ClientRectangle clientRectangle)
+        public static Bitmap GetImage(string locale, ClientRectangle clientRectangle)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(locale);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
+
             switch (clientRectangle)
             {
                 case ClientRectangle.Accept:

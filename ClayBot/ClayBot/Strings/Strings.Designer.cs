@@ -187,7 +187,7 @@ namespace ClayBot.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to State: {0}, Retry: {1}.
+        ///   Looks up a localized string similar to State: {0}, Retry: {1} ({2}).
         /// </summary>
         internal static string Status {
             get {

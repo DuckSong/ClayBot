@@ -157,6 +157,6 @@
     <value>LoL Patcher</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Estado: {0}, Repetir: {1}</value>
+    <value>Estado: {0}, Repetir: {1} ({2})</value>
   </data>
 </root>

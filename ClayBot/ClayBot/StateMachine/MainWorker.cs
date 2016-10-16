@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
-using System.Threading;
 
 namespace ClayBot.StateMachine
 {
@@ -17,10 +15,7 @@ namespace ClayBot.StateMachine
         public MainWorker(MainForm mainForm)
         {
             this.mainForm = mainForm;
-
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(mainForm.Config.LolLocale);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(mainForm.Config.LolLocale);
-
+            
             currentTransition = new Transition(
                 State.Unknown,
                 () => { return true; },
@@ -560,7 +555,8 @@ namespace ClayBot.StateMachine
                     new State[]
                     {
                         State.InQueue,
-                        State.AcceptQueue
+                        State.AcceptQueue,
+                        State.ChampionSelect
                     }) },
                 #endregion
 
