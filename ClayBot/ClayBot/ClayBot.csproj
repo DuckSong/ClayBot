@@ -147,7 +147,6 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Client\ClientImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.pt-BR.resx" />
@@ -155,7 +154,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ClientImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Game\GameImages.en-AU.resx" />
+    <EmbeddedResource Include="Images\Client\ClientImages.ru-RU.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.pt-BR.resx" />
@@ -163,7 +162,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GameImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.en-AU.resx" />
+    <EmbeddedResource Include="Images\Game\GameImages.ru-RU.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.pt-BR.resx" />
@@ -171,6 +170,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PatcherImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.ru-RU.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.es-MX.resx" />
@@ -179,7 +179,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PatcherImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\Strings.en-AU.resx" />
+    <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.ru-RU.resx" />
     <EmbeddedResource Include="Strings\Strings.en-GB.resx" />
     <EmbeddedResource Include="Strings\Strings.es-MX.resx" />
     <EmbeddedResource Include="Strings\Strings.pt-BR.resx" />
@@ -187,6 +187,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Strings.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="cvextern.dll">

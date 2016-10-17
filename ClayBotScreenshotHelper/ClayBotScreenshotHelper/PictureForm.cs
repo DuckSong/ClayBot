@@ -13,13 +13,14 @@ namespace ClayBotScreenshotHelper
         private Rectangle selectedRectangle;
         private Point initialPoint;
 
-        public PictureForm(Bitmap image, string savePath)
+        public PictureForm(Bitmap image, string savePath, string text)
         {
             InitializeComponent();
 
             originalBitmap = image;
             this.savePath = savePath;
             pictureBox.Image = originalBitmap;
+            rectangleInfoTextBox.Text = text;
         }
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)

@@ -63,11 +63,11 @@ namespace ClayBot
 
         public static string[] SUPPORTED_LOCALES = new string[]
         {
-            "en-AU",
             "en-GB",
             "en-US",
             "es-MX",
-            "pt-BR"
+            "pt-BR",
+            "ru-RU"
         };
 
         public static string[] PROCESS_NAMES = new string[]

@@ -124,7 +124,9 @@ namespace ClayBotScreenshotHelper
 
                 Thread.Sleep(5000);
 
-                new PictureForm(TakeTargetWindowScreenshot(), savePathTextBox.Text).ShowDialog();
+                StringBuilder text = new StringBuilder(1024);
+                GetWindowText(targetWindow.Handle, text, 1024);
+                new PictureForm(TakeTargetWindowScreenshot(), savePathTextBox.Text, text.ToString()).ShowDialog();
             }
 
             screenshotButton.Enabled = true;
@@ -249,6 +251,9 @@ namespace ClayBotScreenshotHelper
 
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        internal static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
