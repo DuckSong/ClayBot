@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Threading;
@@ -123,26 +124,112 @@ namespace ClayBot.StateMachine
         {
             foreach (char c in text)
             {
-                bool isUpper = c >= 'A' && c <= 'Z';
-
-                if (isUpper)
+                KeyValuePair<byte, bool> convertedKey = Convert(c);
+                
+                if (convertedKey.Value)
                 {
                     keybd_event((byte)Keys.LShiftKey, 0, 0, UIntPtr.Zero);
                     Thread.Sleep(Static.KEY_ENTER_DELAY);
                 }
-
-                byte key = (byte)(c.ToString().ToUpper()[0] - 'A' + Keys.A);
                 
-                keybd_event(key, 0, 0, UIntPtr.Zero);
+                keybd_event(convertedKey.Key, 0, 0, UIntPtr.Zero);
                 Thread.Sleep(Static.KEY_ENTER_DELAY);
-                keybd_event(key, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
+                keybd_event(convertedKey.Key, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
 
-                if (isUpper)
+                if (convertedKey.Value)
                 {
                     Thread.Sleep(Static.KEY_ENTER_DELAY);
                     keybd_event((byte)Keys.LShiftKey, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
                 }
             }
+        }
+
+        private KeyValuePair<byte, bool> Convert(char c)
+        {
+            // Numeric
+            if (c >= 0x30 && c <= 0x39)
+            {
+                return new KeyValuePair<byte, bool>((byte)c, false);
+            }
+            // Capital
+            else if (c >= 0x41 && c <= 0x5A)
+            {
+                return new KeyValuePair<byte, bool>((byte)c, true);
+            }
+            // Small
+            else if (c >= 0x61 && c <= 0x7A)
+            {
+                return new KeyValuePair<byte, bool>((byte)(c - 0x20), false);
+            }
+            // Special
+            else
+            {
+                switch (c)
+                {
+                    case '`':
+                        return new KeyValuePair<byte, bool>(0xC0, false);
+                    case '~':
+                        return new KeyValuePair<byte, bool>(0xC0, true);
+                    case '!':
+                        return new KeyValuePair<byte, bool>(0x31, true);
+                    case '@':
+                        return new KeyValuePair<byte, bool>(0x32, true);
+                    case '#':
+                        return new KeyValuePair<byte, bool>(0x33, true);
+                    case '$':
+                        return new KeyValuePair<byte, bool>(0x34, true);
+                    case '%':
+                        return new KeyValuePair<byte, bool>(0x35, true);
+                    case '^':
+                        return new KeyValuePair<byte, bool>(0x36, true);
+                    case '&':
+                        return new KeyValuePair<byte, bool>(0x37, true);
+                    case '*':
+                        return new KeyValuePair<byte, bool>(0x38, true);
+                    case '(':
+                        return new KeyValuePair<byte, bool>(0x39, true);
+                    case ')':
+                        return new KeyValuePair<byte, bool>(0x30, true);
+                    case '-':
+                        return new KeyValuePair<byte, bool>(0xBD, false);
+                    case '_':
+                        return new KeyValuePair<byte, bool>(0xBD, true);
+                    case '=':
+                        return new KeyValuePair<byte, bool>(0xBB, false);
+                    case '+':
+                        return new KeyValuePair<byte, bool>(0xBB, true);
+                    case '[':
+                        return new KeyValuePair<byte, bool>(0xDB, false);
+                    case '{':
+                        return new KeyValuePair<byte, bool>(0xDB, true);
+                    case ']':
+                        return new KeyValuePair<byte, bool>(0xDD, false);
+                    case '}':
+                        return new KeyValuePair<byte, bool>(0xDD, true);
+                    case ';':
+                        return new KeyValuePair<byte, bool>(0xBA, false);
+                    case ':':
+                        return new KeyValuePair<byte, bool>(0xBA, true);
+                    case '\'':
+                        return new KeyValuePair<byte, bool>(0xDE, false);
+                    case '"':
+                        return new KeyValuePair<byte, bool>(0xDE, true);
+                    case '|':
+                        return new KeyValuePair<byte, bool>(0xDC, true);
+                    case ',':
+                        return new KeyValuePair<byte, bool>(0xBC, false);
+                    case '<':
+                        return new KeyValuePair<byte, bool>(0xBC, true);
+                    case '.':
+                        return new KeyValuePair<byte, bool>(0xBE, false);
+                    case '>':
+                        return new KeyValuePair<byte, bool>(0xBE, true);
+                    case '?':
+                        return new KeyValuePair<byte, bool>(0xBF, true);
+                }
+            }
+
+            return new KeyValuePair<byte, bool>();
         }
 
         private void EmptyTextBox()
