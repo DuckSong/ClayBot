@@ -147,6 +147,7 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\Client\ClientImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.pt-BR.resx" />
@@ -156,6 +157,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Client\ClientImages.ru-RU.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.tr-TR.resx" />
+    <EmbeddedResource Include="Images\Game\GameImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.pt-BR.resx" />
@@ -165,6 +167,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Game\GameImages.ru-RU.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.tr-TR.resx" />
+    <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.pt-BR.resx" />
@@ -184,6 +187,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.ru-RU.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.tr-TR.resx" />
+    <EmbeddedResource Include="Strings\Strings.en-AU.resx" />
     <EmbeddedResource Include="Strings\Strings.en-GB.resx" />
     <EmbeddedResource Include="Strings\Strings.es-MX.resx" />
     <EmbeddedResource Include="Strings\Strings.pt-BR.resx" />

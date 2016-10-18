@@ -68,7 +68,8 @@ namespace ClayBot
             "es-MX",
             "pt-BR",
             "ru-RU",
-            "tr-TR"
+            "tr-TR",
+            "en-AU"
         };
 
         public static string[] PROCESS_NAMES = new string[]
