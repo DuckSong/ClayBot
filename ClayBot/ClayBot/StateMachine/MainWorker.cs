@@ -422,6 +422,16 @@ namespace ClayBot.StateMachine
                                 false,
                                 ClientRectangle.AramIndicator,
                                 false)
+                        }) || ValidateClient(new ClientValidation[]
+                        {
+                            new ClientValidation(
+                                true,
+                                ClientRectangle.InactivePlay,
+                                false),
+                            new ClientValidation(
+                                false,
+                                ClientRectangle.Solo,
+                                false)
                         });
                     },
                     () =>

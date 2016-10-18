@@ -70,7 +70,7 @@ namespace ClayBot
             StartPosition = FormStartPosition.Manual;
             FormBorderStyle = FormBorderStyle.None;
             ShowInTaskbar = false;
-            TopMost = true;
+            TopMost = false;
             Location = Screen.PrimaryScreen.WorkingArea.Location;
 
             CreateForm(Controls, new Point(5, 5), 5, true,

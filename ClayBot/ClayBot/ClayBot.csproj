@@ -61,7 +61,7 @@
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -155,6 +155,7 @@
       <LastGenOutput>ClientImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Client\ClientImages.ru-RU.resx" />
+    <EmbeddedResource Include="Images\Client\ClientImages.tr-TR.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.pt-BR.resx" />
@@ -163,6 +164,7 @@
       <LastGenOutput>GameImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Game\GameImages.ru-RU.resx" />
+    <EmbeddedResource Include="Images\Game\GameImages.tr-TR.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.es-MX.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.pt-BR.resx" />
@@ -171,6 +173,7 @@
       <LastGenOutput>PatcherImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.ru-RU.resx" />
+    <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.tr-TR.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.es-MX.resx" />
@@ -180,6 +183,7 @@
       <LastGenOutput>PatcherImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.ru-RU.resx" />
+    <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.tr-TR.resx" />
     <EmbeddedResource Include="Strings\Strings.en-GB.resx" />
     <EmbeddedResource Include="Strings\Strings.es-MX.resx" />
     <EmbeddedResource Include="Strings\Strings.pt-BR.resx" />
@@ -188,6 +192,7 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\Strings.ru-RU.resx" />
+    <EmbeddedResource Include="Strings\Strings.tr-TR.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="cvextern.dll">
