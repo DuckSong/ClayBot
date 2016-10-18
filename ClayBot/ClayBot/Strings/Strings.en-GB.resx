@@ -129,32 +129,32 @@
   <data name="LeaverBusterAgreement" xml:space="preserve">
     <value>I Agree</value>
   </data>
-  <data name="LolDirectoryLabel" xml:space="preserve">
-    <value>League of Legends directory</value>
-  </data>
-  <data name="LolDirectoryNotFound" xml:space="preserve">
-    <value>League of Legends directory is incorrect!</value>
-  </data>
   <data name="LolIdLabel" xml:space="preserve">
     <value>League of Legends ID</value>
   </data>
   <data name="LolIdNull" xml:space="preserve">
     <value>Your League of Legends ID is not set!</value>
   </data>
-  <data name="LolLauncherNotFound" xml:space="preserve">
-    <value>League of Legends launcher is not found under specified directory! Please make sure League of Legends directory is set correctly!</value>
+  <data name="LolLanguageLabel" xml:space="preserve">
+    <value>League of Legends Language</value>
+  </data>
+  <data name="LolLauncherPathLabel" xml:space="preserve">
+    <value>League of Legends launcher path</value>
+  </data>
+  <data name="LolLauncherPathNotFound" xml:space="preserve">
+    <value>League of Legends launcher path is incorrect!</value>
   </data>
   <data name="LolLocaleNotFound" xml:space="preserve">
-    <value>Could not recognize League of Legends locale! Please make sure League of Legends directory is set correctly!</value>
-  </data>
-  <data name="LolLocaleNotSupported" xml:space="preserve">
-    <value>Your locale ({0}) is not supported!</value>
+    <value>League of Legends locale is not set!</value>
   </data>
   <data name="LolPasswordLabel" xml:space="preserve">
     <value>League of Legends password</value>
   </data>
   <data name="LolPasswordNull" xml:space="preserve">
     <value>Your League of Legends password is not set!</value>
+  </data>
+  <data name="LolRegionLabel" xml:space="preserve">
+    <value>League of Legends Region</value>
   </data>
   <data name="PatcherText" xml:space="preserve">
     <value>LoL Patcher</value>

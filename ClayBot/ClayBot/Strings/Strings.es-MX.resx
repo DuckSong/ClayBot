@@ -124,42 +124,42 @@
     <value>League of Legends (TM) Client</value>
   </data>
   <data name="Instruction" xml:space="preserve">
-    <value>ESC: Dejar, F12: Hacer una pausa y mostrar el menú de configuración</value>
+    <value>ESC: Salir, F12: Pausa y mostrar el menú de configuración</value>
   </data>
   <data name="LeaverBusterAgreement" xml:space="preserve">
     <value>Estoy de acuerdo</value>
   </data>
-  <data name="LolDirectoryLabel" xml:space="preserve">
-    <value>League of Legends directorio</value>
-  </data>
-  <data name="LolDirectoryNotFound" xml:space="preserve">
-    <value>League of Legends directorio es incorrecto!</value>
-  </data>
   <data name="LolIdLabel" xml:space="preserve">
-    <value>League of Legends ID</value>
+    <value>Liga de Leyendas ID</value>
   </data>
   <data name="LolIdNull" xml:space="preserve">
-    <value>Su League of Legends ID no está ajustado!</value>
+    <value>Su Liga de Leyendas ID no está ajustado!</value>
   </data>
-  <data name="LolLauncherNotFound" xml:space="preserve">
-    <value>League of Legends de lanzamiento no se encuentra en el directorio especificado! Por favor asegúrese de que la League of Legends directorio está configurado correctamente!</value>
+  <data name="LolLanguageLabel" xml:space="preserve">
+    <value>Liga de Leyendas Idioma</value>
+  </data>
+  <data name="LolLauncherPathLabel" xml:space="preserve">
+    <value>Liga de ruta lanzador Leyendas</value>
+  </data>
+  <data name="LolLauncherPathNotFound" xml:space="preserve">
+    <value>Liga de Leyendas lanzador ruta es incorrecta!</value>
   </data>
   <data name="LolLocaleNotFound" xml:space="preserve">
-    <value>No se pudo reconocer a la League of Legends local! Por favor asegúrese de que la League of Legends directorio está configurado correctamente!</value>
-  </data>
-  <data name="LolLocaleNotSupported" xml:space="preserve">
-    <value>Su idioma ({0}) no es compatible!</value>
+    <value>Liga de Leyendas local no está configurado!</value>
   </data>
   <data name="LolPasswordLabel" xml:space="preserve">
-    <value>League of Legends contraseña</value>
+    <value>Liga de Leyendas contraseña</value>
   </data>
   <data name="LolPasswordNull" xml:space="preserve">
-    <value>Su contraseña League of Legends no está ajustado!</value>
+    <value>Su contraseña Liga de Leyendas no está configurado!</value>
+  </data>
+  <data name="LolRegionLabel" xml:space="preserve">
+    <value>Liga de Leyendas Región</value>
   </data>
   <data name="PatcherText" xml:space="preserve">
     <value>LoL Patcher</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Estado: {0}, remarcado: {1} ({2})</value>
+    <value>Estado: {0}, Reintentar: {1} ({2})</value>
   </data>
 </root>

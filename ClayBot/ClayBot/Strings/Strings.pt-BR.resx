@@ -129,26 +129,23 @@
   <data name="LeaverBusterAgreement" xml:space="preserve">
     <value>Eu concordo</value>
   </data>
-  <data name="LolDirectoryLabel" xml:space="preserve">
-    <value>League of Legends diretório</value>
-  </data>
-  <data name="LolDirectoryNotFound" xml:space="preserve">
-    <value>League of Legends diretório está incorreta!</value>
-  </data>
   <data name="LolIdLabel" xml:space="preserve">
     <value>League of Legends ID</value>
   </data>
   <data name="LolIdNull" xml:space="preserve">
     <value>Seu League of Legends ID não está definida!</value>
   </data>
-  <data name="LolLauncherNotFound" xml:space="preserve">
-    <value>League of Legends lançador não é encontrada sob o diretório especificado! Certifique-se de League of Legends diretório está configurado corretamente!</value>
+  <data name="LolLanguageLabel" xml:space="preserve">
+    <value>League of Legends Idioma</value>
+  </data>
+  <data name="LolLauncherPathLabel" xml:space="preserve">
+    <value>League of Legends caminho lançador</value>
+  </data>
+  <data name="LolLauncherPathNotFound" xml:space="preserve">
+    <value>League of Legends caminho lançador está incorreta!</value>
   </data>
   <data name="LolLocaleNotFound" xml:space="preserve">
-    <value>Não foi possível reconhecer League of Legends locale! Certifique-se de League of Legends diretório está configurado corretamente!</value>
-  </data>
-  <data name="LolLocaleNotSupported" xml:space="preserve">
-    <value>Sua localidade ({0}) não é suportada!</value>
+    <value>League of Legends localidade não está definida!</value>
   </data>
   <data name="LolPasswordLabel" xml:space="preserve">
     <value>League of Legends senha</value>
@@ -156,10 +153,13 @@
   <data name="LolPasswordNull" xml:space="preserve">
     <value>Seu League of Legends senha não está definida!</value>
   </data>
+  <data name="LolRegionLabel" xml:space="preserve">
+    <value>League of Legends Região</value>
+  </data>
   <data name="PatcherText" xml:space="preserve">
     <value>LoL Patcher</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Estado: {0}, Repetir: {1} ({2})</value>
+    <value>Estado: {0}, repetir: {1} ({2})</value>
   </data>
 </root>

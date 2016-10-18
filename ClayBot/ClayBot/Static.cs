@@ -60,16 +60,34 @@ namespace ClayBot
         public const int RETRY = 5;
         public const double SENSITIVITY = 0.1d;
         public const double THRESHOLD_GRAY = 200d;
-
-        public static string[] SUPPORTED_LOCALES = new string[]
+        
+        public struct Locale
         {
-            "en-GB",
-            "en-US",
-            "es-MX",
-            "pt-BR",
-            "ru-RU",
-            "tr-TR",
-            "en-AU"
+            public string Region;
+            public string Language;
+            public string LocaleCode;
+
+            public Locale(string region, string language, string localeCode)
+            {
+                Region = region;
+                Language = language;
+                LocaleCode = localeCode;
+            }
+        }
+
+        public static Locale[] SUPPORTED_LOCALES = new Locale[]
+        {
+            new Locale("North America", "English", "en-US"),
+            new Locale("EU West", "English", "en-GB"),
+            new Locale("EU Nordic & East", "English", "en-GB"),
+            new Locale("Latin America North", "Spanish", "es-MX"),
+            new Locale("Latin America South", "Spanish", "es-MX"),
+            new Locale("Brazil", "Portuguese", "pt-BR"),
+            new Locale("Japan", "Japanese", "ja-JA"),
+            new Locale("Russia", "Russian", "ru-RU"),
+            new Locale("Turkey", "Turkish", "tr-TR"),
+            new Locale("Oceania", "English", "en-AU"),
+            new Locale("Republic of Korea", "Korean", "ko-KO")
         };
 
         public static string[] PROCESS_NAMES = new string[]

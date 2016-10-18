@@ -129,32 +129,32 @@
   <data name="LeaverBusterAgreement" xml:space="preserve">
     <value>Обещаю</value>
   </data>
-  <data name="LolDirectoryLabel" xml:space="preserve">
-    <value>Лига каталог Legends</value>
-  </data>
-  <data name="LolDirectoryNotFound" xml:space="preserve">
-    <value>League of Legends Каталог неверна!</value>
-  </data>
   <data name="LolIdLabel" xml:space="preserve">
-    <value>Лига каталог Легенды неверен!</value>
+    <value>Лига Легенд ID</value>
   </data>
   <data name="LolIdNull" xml:space="preserve">
     <value>Ваша Лига Легенд ID не установлен!</value>
   </data>
-  <data name="LolLauncherNotFound" xml:space="preserve">
-    <value>Лига Легенд запуска не найден под указанной директории! Пожалуйста, убедитесь, что Лига Легенд каталог установлен правильно!</value>
+  <data name="LolLanguageLabel" xml:space="preserve">
+    <value>Лига Легенд Язык</value>
+  </data>
+  <data name="LolLauncherPathLabel" xml:space="preserve">
+    <value>Лига Легенд пусковой путь</value>
+  </data>
+  <data name="LolLauncherPathNotFound" xml:space="preserve">
+    <value>Лига Легенд пусковой путь неверен!</value>
   </data>
   <data name="LolLocaleNotFound" xml:space="preserve">
-    <value>Не удалось распознать Лигу Легенд местности! Пожалуйста, убедитесь, что Лига Легенд каталог установлен правильно!</value>
-  </data>
-  <data name="LolLocaleNotSupported" xml:space="preserve">
-    <value>Ваш языковой стандарт ({0}) не поддерживается!</value>
+    <value>Лига Легенд языковой стандарт не установлен!</value>
   </data>
   <data name="LolPasswordLabel" xml:space="preserve">
     <value>Лига Легенд пароль</value>
   </data>
   <data name="LolPasswordNull" xml:space="preserve">
     <value>Ваша Лига Легенд пароль не установлен!</value>
+  </data>
+  <data name="LolRegionLabel" xml:space="preserve">
+    <value>Лига Легенд области</value>
   </data>
   <data name="PatcherText" xml:space="preserve">
     <value>LoL Patcher</value>

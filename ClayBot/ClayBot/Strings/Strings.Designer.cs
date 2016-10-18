@@ -97,24 +97,6 @@ namespace ClayBot.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to League of Legends directory.
-        /// </summary>
-        internal static string LolDirectoryLabel {
-            get {
-                return ResourceManager.GetString("LolDirectoryLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to League of Legends directory is incorrect!.
-        /// </summary>
-        internal static string LolDirectoryNotFound {
-            get {
-                return ResourceManager.GetString("LolDirectoryNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to League of Legends ID.
         /// </summary>
         internal static string LolIdLabel {
@@ -133,29 +115,38 @@ namespace ClayBot.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to League of Legends launcher is not found under specified directory! Please make sure League of Legends directory is set correctly!.
+        ///   Looks up a localized string similar to League of Legends Language.
         /// </summary>
-        internal static string LolLauncherNotFound {
+        internal static string LolLanguageLabel {
             get {
-                return ResourceManager.GetString("LolLauncherNotFound", resourceCulture);
+                return ResourceManager.GetString("LolLanguageLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not recognize League of Legends locale! Please make sure League of Legends directory is set correctly!.
+        ///   Looks up a localized string similar to League of Legends launcher path.
+        /// </summary>
+        internal static string LolLauncherPathLabel {
+            get {
+                return ResourceManager.GetString("LolLauncherPathLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to League of Legends launcher path is incorrect!.
+        /// </summary>
+        internal static string LolLauncherPathNotFound {
+            get {
+                return ResourceManager.GetString("LolLauncherPathNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to League of Legends locale is not set!.
         /// </summary>
         internal static string LolLocaleNotFound {
             get {
                 return ResourceManager.GetString("LolLocaleNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your locale ({0}) is not supported!.
-        /// </summary>
-        internal static string LolLocaleNotSupported {
-            get {
-                return ResourceManager.GetString("LolLocaleNotSupported", resourceCulture);
             }
         }
         
@@ -174,6 +165,15 @@ namespace ClayBot.Strings {
         internal static string LolPasswordNull {
             get {
                 return ResourceManager.GetString("LolPasswordNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to League of Legends Region.
+        /// </summary>
+        internal static string LolRegionLabel {
+            get {
+                return ResourceManager.GetString("LolRegionLabel", resourceCulture);
             }
         }
         

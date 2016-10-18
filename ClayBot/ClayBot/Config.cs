@@ -1,28 +1,32 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace ClayBot
 {
     public class Config
     {
-        private const string LOL_DIRECTORY_DEFAULT = @"C:\Riot Games\League of Legends";
+        private const string LOL_LAUNCHER_PATH_DEFAULT = @"C:\Riot Games\League of Legends\lol.launcher.admin.exe";
         private const string LOL_LAUNCHER_EXECUTABLE_NAME = "lol.launcher.admin.exe";
-        private const string LOL_AIR_CLIENT_RELATIVE_DIRECTORY = @"RADS\projects\lol_air_client\releases";
-        private const string LOL_LOCALE_PROPERTIES_RELATIVE_PATH = @"deploy\locale.properties";
-
-        public string LolDirectory;
+        private const string LOL_REGION_DEFAULT = "North America";
+        private const string LOL_LANGUAGE_DEFAULT = "English";
+        private const string LOL_LOCALE_DEFAULT = "en-US";
+        
         public string LolLauncherPath;
+        public string LolRegion;
+        public string LolLanguage;
         public string LolLocale;
         public string LolId;
         public string LolPassword;
 
         public Config()
         {
-            LolDirectory = LOL_DIRECTORY_DEFAULT;
+            LolLauncherPath = LOL_LAUNCHER_PATH_DEFAULT;
+            LolRegion = LOL_REGION_DEFAULT;
+            LolLanguage = LOL_LANGUAGE_DEFAULT;
+            LolLocale = LOL_LOCALE_DEFAULT;
             LolId = string.Empty;
             LolPassword = string.Empty;
         }
@@ -30,52 +34,61 @@ namespace ClayBot
         public void Initialize()
         {
             LolLauncherPath = GetLolLauncherPath();
-            LolLocale = GetLolLocale();
         }
 
         private string GetLolLauncherPath()
         {
-            if (string.IsNullOrEmpty(LolDirectory) || !Directory.Exists(LolDirectory)) return string.Empty;
-            
-            string lolLauncherPath = Path.Combine(LolDirectory, LOL_LAUNCHER_EXECUTABLE_NAME);
+            if (!File.Exists(LolLauncherPath))
+            {
+                MessageBox.Show("Launcher not found at: " + LolLauncherPath);
 
-            return File.Exists(lolLauncherPath) ? lolLauncherPath : string.Empty;
+                if (MessageBox.Show(
+                    "Do you want me to automatically find it for you? (This might take some time.)",
+                    "Find lol.launcher.admin.exe?",
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    return FindLolLauncherPath();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            else
+            {
+                return LolLauncherPath;
+            }
         }
 
-        private string GetLolLocale()
+        private string FindLolLauncherPath()
         {
-            if (string.IsNullOrEmpty(LolDirectory) || !Directory.Exists(LolDirectory)) return string.Empty;
-
-            string airClientDirectory = Path.Combine(LolDirectory, LOL_AIR_CLIENT_RELATIVE_DIRECTORY);
-            if (!Directory.Exists(airClientDirectory)) return string.Empty;
-
-            string airClientReleaseDirectory = Directory.GetDirectories(airClientDirectory).ElementAtOrDefault(0);
-            if (string.IsNullOrEmpty(airClientReleaseDirectory)) return string.Empty;
-
-            string lolLocalePath = Path.Combine(airClientReleaseDirectory, LOL_LOCALE_PROPERTIES_RELATIVE_PATH);
-            if (!File.Exists(lolLocalePath)) return string.Empty;
-
-            using (StreamReader localeReader = new StreamReader(lolLocalePath))
+            foreach (DriveInfo driveInfo in DriveInfo.GetDrives().Where(x => x.IsReady))
             {
-                while (localeReader.Peek() != -1)
-                {
-                    string line = localeReader.ReadLine();
+                string candidate = FindFile(driveInfo.RootDirectory.FullName, LOL_LAUNCHER_EXECUTABLE_NAME);
 
-                    if (line.Contains("locale="))
-                    {
-                        string locale = line.Substring(line.IndexOf("=") + 1).Replace("_", "-").Trim();
-
-                        Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(locale);
-                        Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
-
-                        return locale;
-                    }
-                }
+                if (!string.IsNullOrEmpty(candidate)) return candidate;
             }
 
             return string.Empty;
         }
 
+        private string FindFile(string directory, string fileName)
+        {
+            foreach (string file in Directory.GetFiles(directory))
+            {
+                if (Path.GetFileName(file) == fileName) return file;
+            }
+
+            foreach (string subDirectory in Directory.GetDirectories(directory))
+            {
+                string candidate = FindFile(subDirectory, fileName);
+
+                if (!string.IsNullOrEmpty(candidate)) return candidate;
+            }
+
+            return string.Empty;
+        }
+        
         public static Config ReadConfig()
         {
             string configPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Static.CONFIG_PATH);
