@@ -30,13 +30,8 @@ namespace ClayBot
             LolId = string.Empty;
             LolPassword = string.Empty;
         }
-
-        public void Initialize()
-        {
-            LolLauncherPath = GetLolLauncherPath();
-        }
-
-        private string GetLolLauncherPath()
+        
+        public bool GetLolLauncherPath()
         {
             if (!File.Exists(LolLauncherPath))
             {
@@ -47,17 +42,13 @@ namespace ClayBot
                     "Find lol.launcher.admin.exe?",
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    return FindLolLauncherPath();
+                    LolLauncherPath = FindLolLauncherPath();
                 }
-                else
-                {
-                    return string.Empty;
-                }
+
+                return false;
             }
-            else
-            {
-                return LolLauncherPath;
-            }
+
+            return true;
         }
 
         private string FindLolLauncherPath()
@@ -74,17 +65,23 @@ namespace ClayBot
 
         private string FindFile(string directory, string fileName)
         {
-            foreach (string file in Directory.GetFiles(directory))
+            try
             {
-                if (Path.GetFileName(file) == fileName) return file;
-            }
+                foreach (string file in Directory.GetFiles(directory))
+                {
+                    if (Path.GetFileName(file) == fileName) return file;
+                }
+            } catch { }
 
-            foreach (string subDirectory in Directory.GetDirectories(directory))
+            try
             {
-                string candidate = FindFile(subDirectory, fileName);
+                foreach (string subDirectory in Directory.GetDirectories(directory))
+                {
+                    string candidate = FindFile(subDirectory, fileName);
 
-                if (!string.IsNullOrEmpty(candidate)) return candidate;
-            }
+                    if (!string.IsNullOrEmpty(candidate)) return candidate;
+                }
+            } catch { }
 
             return string.Empty;
         }

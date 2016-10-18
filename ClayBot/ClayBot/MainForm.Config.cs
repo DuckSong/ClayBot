@@ -26,8 +26,7 @@ namespace ClayBot
         private void InitializeConfig()
         {
             config = Config.ReadConfig();
-            config.Initialize();
-
+            
             while (!ValidateConfig())
             {
                 ShowConfigForm();
@@ -37,10 +36,9 @@ namespace ClayBot
         private bool ValidateConfig()
         {
             bool result = true;
-            
-            if (string.IsNullOrEmpty(config.LolLauncherPath) || !File.Exists(config.LolLauncherPath))
+
+            if (!Config.GetLolLauncherPath())
             {
-                MessageBox.Show(Strings.Strings.LolLauncherPathNotFound);
                 result = false;
             }
             
@@ -210,8 +208,6 @@ namespace ClayBot
                 config.LolLauncherPath = lolLauncherPathTextBox.Text;
                 config.LolId = lolIdTextBox.Text;
                 config.LolPassword = lolPasswordTextBox.Text;
-
-                config.Initialize();
 
                 Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(Config.LolLocale);
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Config.LolLocale);
