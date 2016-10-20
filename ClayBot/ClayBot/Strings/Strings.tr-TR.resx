@@ -120,6 +120,9 @@
   <data name="ClientText" xml:space="preserve">
     <value>PVP.net İstemcisi</value>
   </data>
+  <data name="DPIWarning" xml:space="preserve">
+    <value>Masaüstü DPI geçersiz! % 100 olarak değiştirin lütfen!</value>
+  </data>
   <data name="GameText" xml:space="preserve">
     <value>League of Legends (TM) Client</value>
   </data>

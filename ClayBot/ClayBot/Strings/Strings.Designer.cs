@@ -70,6 +70,15 @@ namespace ClayBot.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Desktop DPI is invalid! Please change it to 100%!.
+        /// </summary>
+        internal static string DPIWarning {
+            get {
+                return ResourceManager.GetString("DPIWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to League of Legends (TM) Client.
         /// </summary>
         internal static string GameText {

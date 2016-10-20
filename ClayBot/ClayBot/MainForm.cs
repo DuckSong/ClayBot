@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static ClayBot.NativeMethods;
 
 namespace ClayBot
 {
@@ -15,11 +17,6 @@ namespace ClayBot
         public MainForm() : base()
         {
             components = new Container();
-
-            Initialize();
-            InitializeConfig();
-            InitializeWorker();
-            InitializeInput();
         }
 
         public void SetStatus(string status, bool bad = false)
@@ -63,8 +60,10 @@ namespace ClayBot
             }
         }
 
-        private void Initialize()
+        public bool Initialize()
         {
+            if (!ValidateDPI()) return false;
+
             SuspendLayout();
 
             StartPosition = FormStartPosition.Manual;
@@ -92,6 +91,12 @@ namespace ClayBot
                 });
 
             ResumeLayout();
+
+            InitializeConfig();
+            InitializeWorker();
+            InitializeInput();
+
+            return true;
         }
 
         private void ResizeWindow()
@@ -102,6 +107,29 @@ namespace ClayBot
                     instructionLabel.Width,
                     statusLabel.Width
                 }.Max() + 10, statusLabel.Bottom + 5);
+        }
+
+        private bool ValidateDPI()
+        {
+            float scale = 0.0f;
+
+            using (Graphics g = Graphics.FromHwnd(IntPtr.Zero))
+            {
+                IntPtr desktopDc = g.GetHdc();
+
+                scale = (float)GetDeviceCaps(desktopDc, DeviceCap.DESKTOPVERTRES) / GetDeviceCaps(desktopDc, DeviceCap.VERTRES);
+
+                g.ReleaseHdc();
+            }
+            
+            if (scale != 1.0f)
+            {
+                MessageBox.Show(Strings.Strings.DPIWarning);
+
+                return false;
+            }
+
+            return true;
         }
     }
 }

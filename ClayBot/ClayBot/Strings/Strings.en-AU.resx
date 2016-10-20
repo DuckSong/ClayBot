@@ -120,6 +120,9 @@
   <data name="ClientText" xml:space="preserve">
     <value>PVP.net Client</value>
   </data>
+  <data name="DPIWarning" xml:space="preserve">
+    <value>Your Desktop DPI is invalid! Please change it to 100%!</value>
+  </data>
   <data name="GameText" xml:space="preserve">
     <value>League of Legends (TM) Client</value>
   </data>

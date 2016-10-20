@@ -6,6 +6,49 @@ using System.Text;
 
 namespace ClayBot
 {
+    enum DeviceCap
+    {
+        DRIVERVERSION = 0,
+        TECHNOLOGY = 2,
+        HORZSIZE = 4,
+        VERTSIZE = 6,
+        HORZRES = 8,
+        VERTRES = 10,
+        BITSPIXEL = 12,
+        PLANES = 14,
+        NUMBRUSHES = 16,
+        NUMPENS = 18,
+        NUMMARKERS = 20,
+        NUMFONTS = 22,
+        NUMCOLORS = 24,
+        PDEVICESIZE = 26,
+        CURVECAPS = 28,
+        LINECAPS = 30,
+        POLYGONALCAPS = 32,
+        TEXTCAPS = 34,
+        CLIPCAPS = 36,
+        RASTERCAPS = 38,
+        ASPECTX = 40,
+        ASPECTY = 42,
+        ASPECTXY = 44,
+        SHADEBLENDCAPS = 45,
+        LOGPIXELSX = 88,
+        LOGPIXELSY = 90,
+        SIZEPALETTE = 104,
+        NUMRESERVED = 106,
+        COLORRES = 108,
+        PHYSICALWIDTH = 110,
+        PHYSICALHEIGHT = 111,
+        PHYSICALOFFSETX = 112,
+        PHYSICALOFFSETY = 113,
+        SCALINGFACTORX = 114,
+        SCALINGFACTORY = 115,
+        VREFRESH = 116,
+        DESKTOPVERTRES = 117,
+        DESKTOPHORZRES = 118,
+        BLTALIGNMENT = 119
+    }
+
     delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
 
     delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
@@ -129,6 +172,9 @@ namespace ClayBot
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         internal static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+        [DllImport("gdi32.dll")]
+        internal static extern int GetDeviceCaps(IntPtr hdc, DeviceCap nIndex);
 
         [DllImport("user32.dll")]
         internal static extern IntPtr GetForegroundWindow();
