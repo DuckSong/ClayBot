@@ -127,42 +127,42 @@
     <value>League of Legends (TM) Client</value>
   </data>
   <data name="Instruction" xml:space="preserve">
-    <value>ESC: F12 çıkın: Pause ve yapılandırma menüsünü göstermek</value>
+    <value>ESC: Çıkış, F12: Duraklat ve menüyü göster</value>
   </data>
   <data name="LeaverBusterAgreement" xml:space="preserve">
     <value>Kabul Ediyorum</value>
   </data>
   <data name="LolIdLabel" xml:space="preserve">
-    <value>Efsaneler ID Lig</value>
+    <value>League of Legends kullanıcı adı</value>
   </data>
   <data name="LolIdNull" xml:space="preserve">
-    <value>Efsaneler ID senin Lig ayarlı değil!</value>
+    <value>League of Legends kullanıcı adın girilmemiş!</value>
   </data>
   <data name="LolLanguageLabel" xml:space="preserve">
-    <value>Efsaneler Dili Lig</value>
+    <value>League of Legends dili</value>
   </data>
   <data name="LolLauncherPathLabel" xml:space="preserve">
-    <value>Efsaneler başlatıcısı yolu Lig</value>
+    <value>League of Legends yolu</value>
   </data>
   <data name="LolLauncherPathNotFound" xml:space="preserve">
-    <value>Efsaneler başlatıcısı yolunun Lig yanlıştır!</value>
+    <value>League of Legends yolu yanlış</value>
   </data>
   <data name="LolLocaleNotFound" xml:space="preserve">
     <value>League of Legends yerel ayarlı değil!</value>
   </data>
   <data name="LolPasswordLabel" xml:space="preserve">
-    <value>Efsaneler şifre Lig</value>
+    <value>League of Legends şifren</value>
   </data>
   <data name="LolPasswordNull" xml:space="preserve">
-    <value>Efsaneler şifre sizin Lig ayarlı değil!</value>
+    <value>League of Legends şifren girilmemiş!</value>
   </data>
   <data name="LolRegionLabel" xml:space="preserve">
-    <value>Efsaneler Bölgesi Lig</value>
+    <value>League of Legends bölgen</value>
   </data>
   <data name="PatcherText" xml:space="preserve">
     <value>LoL Patcher</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Devlet: {0}, yeniden dene: {1} ({2})</value>
+    <value>Durum: {0}, yeniden dene: {1} ({2})</value>
   </data>
 </root>
