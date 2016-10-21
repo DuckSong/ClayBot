@@ -87,7 +87,7 @@ namespace ClayBot
             new Locale("Russia", "Russian", "ru-RU"),
             new Locale("Turkey", "Turkish", "tr-TR"),
             new Locale("Oceania", "English", "en-AU"),
-            new Locale("Republic of Korea", "Korean", "ko-KO")
+            new Locale("Republic of Korea", "Korean", "ko-KR")
         };
 
         public static string[] PROCESS_NAMES = new string[]

@@ -150,6 +150,7 @@
     <EmbeddedResource Include="Images\Client\ClientImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.es-MX.resx" />
+    <EmbeddedResource Include="Images\Client\ClientImages.ko-KR.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.pt-BR.resx" />
     <EmbeddedResource Include="Images\Client\ClientImages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -160,6 +161,7 @@
     <EmbeddedResource Include="Images\Game\GameImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.es-MX.resx" />
+    <EmbeddedResource Include="Images\Game\GameImages.ko-KR.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.pt-BR.resx" />
     <EmbeddedResource Include="Images\Game\GameImages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -170,6 +172,7 @@
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.es-MX.resx" />
+    <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.ko-KR.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.pt-BR.resx" />
     <EmbeddedResource Include="Images\Patcher\Large\PatcherImages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -180,6 +183,7 @@
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.en-AU.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.en-GB.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.es-MX.resx" />
+    <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.ko-KR.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.pt-BR.resx" />
     <EmbeddedResource Include="Images\Patcher\Small\PatcherImages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -190,6 +194,7 @@
     <EmbeddedResource Include="Strings\Strings.en-AU.resx" />
     <EmbeddedResource Include="Strings\Strings.en-GB.resx" />
     <EmbeddedResource Include="Strings\Strings.es-MX.resx" />
+    <EmbeddedResource Include="Strings\Strings.ko-KR.resx" />
     <EmbeddedResource Include="Strings\Strings.pt-BR.resx" />
     <EmbeddedResource Include="Strings\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
