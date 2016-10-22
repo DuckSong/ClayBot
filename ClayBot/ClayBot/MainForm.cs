@@ -21,14 +21,17 @@ namespace ClayBot
 
         public void SetStatus(string status, bool bad = false)
         {
-            Invoke((MethodInvoker)delegate
+            try
             {
-                instructionLabel.Text = Strings.Strings.Instruction;
-                statusLabel.Text = status;
-                statusLabel.ForeColor = bad ? Color.Red : Color.Green;
+                Invoke((MethodInvoker)delegate
+                {
+                    instructionLabel.Text = Strings.Strings.Instruction;
+                    statusLabel.Text = status;
+                    statusLabel.ForeColor = bad ? Color.Red : Color.Green;
 
-                ResizeWindow();
-            });
+                    ResizeWindow();
+                });
+            } catch { }
         }
 
         protected override void Dispose(bool disposing)

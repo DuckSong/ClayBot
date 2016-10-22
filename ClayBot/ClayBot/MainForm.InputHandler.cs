@@ -42,15 +42,18 @@ namespace ClayBot
 
         public void Pause()
         {
-            Invoke((MethodInvoker)delegate
+            try
             {
-                workerThread.Abort();
-                workerThread.Join();
+                Invoke((MethodInvoker)delegate
+                {
+                    workerThread.Abort();
+                    workerThread.Join();
 
-                ShowConfigForm();
+                    ShowConfigForm();
 
-                InitializeWorker();
-            });
+                    InitializeWorker();
+                });
+            } catch { }
         }
     }
 }
