@@ -130,7 +130,7 @@
     <value>ESC: 종료, F12: 일시정지 후 설정 메뉴 열기</value>
   </data>
   <data name="LeaverBusterAgreement" xml:space="preserve">
-    <value>I Agree</value>
+    <value>동의합니다</value>
   </data>
   <data name="LolIdLabel" xml:space="preserve">
     <value>리그 오브 레전드 ID</value>
